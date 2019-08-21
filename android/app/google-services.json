@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "182384501961",
+    "firebase_url": "https://febtestwhatsapp.firebaseio.com",
+    "project_id": "febtestwhatsapp",
+    "storage_bucket": "febtestwhatsapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182384501961:android:32eb1c7eea0e5f87",
+        "android_client_info": {
+          "package_name": "com.firebase_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182384501961-91b76t9n9k94fgj7mbnurdtjsn6o52o0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7O3e1CHofGkdNuMPFLSI_hVNLvYPBCOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182384501961-91b76t9n9k94fgj7mbnurdtjsn6o52o0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
