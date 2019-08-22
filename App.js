@@ -32,13 +32,20 @@ import firebase from 'react-native-firebase';
 
 const reffirebase = firebase.firestore().collection('cities').doc('London');
 
+const db = firebase.firestore();
+
+//const reffirebaseCollection = firebase.firestore.collection('cities');
+
 class App extends React.Component {
   constructor(){
     super();
     
-    this.setState={
+    this.state={
 
       population:0,
+      cityInput:'zero',
+      cityArray:[],
+      upthere:'default',
 
     }
   
@@ -65,10 +72,17 @@ class App extends React.Component {
 
         const dataWeUpdate = doc.data().population +1 ;
 
+        
+
         transaction.update(reffirebase,{
 
           population:dataWeUpdate,
 
+        });
+
+        this.setState({
+
+            upthere:dataWeUpdate,
         });
 
         return dataWeUpdate;
@@ -90,17 +104,83 @@ class App extends React.Component {
 
   };
 
+  ////  
+
+  _donwloadCollection =()=>{
+
+    // db.collection('cities')
+    // .get()
+
+    // db.runTransaction( async object =>{
+
+    //   const datacollection = object.get().
+
+
+    // })
+
+    db.collection('cities')
+    .get().then( object =>{
+
+        object.docs.forEach(docSingleObject=>{
+
+          
+        });
+
+
+    }).catch(error=>{
+
+      console.log('errrrrooor');
+
+      this.setState({
+
+        cityInput:'what nigg '+ error,
+
+      });
+
+
+
+    });
+
+  };
+
+  //another test download collection 
+
+  _downloadColv2 = async() =>{
+
+    const snapshot = await firebase.firestore().collection('cities').get().catch(error=>{
+
+      console.log('error got ==>.> '+ error);
+    });
+
+    var dataprocessed = snapshot.docs.map(doc=>doc.data());
+
+    console.log('data we received ==.> ' + JSON.stringify(dataprocessed));
+
+    this.setState({
+
+      cityInput:dataprocessed,
+
+    })
+
+  };
+
   // ------------- end function
 
   render(){
   return (
    <View style={{alignItems:'center', justifyContent:'center', flex:1}}>
    
-    <Text> tests </Text>
+    <Text>{this.state.upthere}</Text>
     <View style={{margin:10, width:200}}>
       <Button title='get from firebase' onPress={this._donwloadThem}></Button>
     </View>
-   
+    <Text style={{margin:10}}>test</Text>
+    <Text>{this.state.cityInput}</Text>
+    <View style={{margin:10, width:200}}>
+    <Button title='get from firebase' onPress={this._downloadColv2}></Button>
+  </View>
+  
+    
    </View>
   );
   };
