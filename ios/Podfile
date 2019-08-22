@@ -29,6 +29,8 @@ target 'firebase_demo' do
 
   pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
   target 'firebase_demoTests' do
     inherit! :search_paths
     # Pods for testing

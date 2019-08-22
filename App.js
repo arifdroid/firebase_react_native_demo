@@ -6,6 +6,10 @@
  * @flow
  */
 
+ // https://github.com/mateusc42/react-native-firebase-mlkit wrapper ml kit 
+
+
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 import React, {Fragment} from 'react';
 import {
 
@@ -28,6 +32,10 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import firebase from 'react-native-firebase';
+
+import Test2Comp from './components/Test2';
+
+import CameraComponent from './components/CameraComponent';
 //import console = require('console');
 
 const reffirebase = firebase.firestore().collection('cities').doc('London');
@@ -36,7 +44,7 @@ const db = firebase.firestore();
 
 //const reffirebaseCollection = firebase.firestore.collection('cities');
 
-class App extends React.Component {
+class HomeScreen extends React.Component {
   constructor(){
     super();
     
@@ -178,13 +186,70 @@ class App extends React.Component {
     <Text>{this.state.cityInput}</Text>
     <View style={{margin:10, width:200}}>
     <Button title='get from firebase' onPress={this._downloadColv2}></Button>
-  </View>
+    </View>
+
+    <View style={{margin:10, width:200}}>
+    <Button title='Camera' onPress={()=>this.props.navigation.navigate('CameraComponent')}></Button>
+    </View>
   
     
    </View>
   );
   };
 };
+
+
+//////setting up navigation 
+
+const RootStack = createStackNavigator(
+  {
+
+    Home:HomeScreen,
+    Test2Test:Test2Comp,
+    CameraComponent:CameraComponent,
+
+  },{
+
+    initialRouteName:'Home'
+  }
+);
+
+const AppContainer = createAppContainer(RootStack);
+
+export default class App extends React.Component{
+
+  render(){
+    return(
+        <AppContainer/>
+
+    )
+  };
+};
+
+//////////// ..... >>>>>  ////  stack 
+
+class Test extends React.Component{
+  constructor(){
+    super()
+  }
+
+  render(){
+    return(
+
+      <View style={{justifyContent:'center', alignItems:'center'}}>
+      
+      <Text> this is test component </Text>
+      
+      </View>
+
+    )
+  }
+}
+
+
+
+
+/////////////////////
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -225,4 +290,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+//export default App;
