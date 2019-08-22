@@ -45,7 +45,7 @@ export default class CameraComponent extends React.Component {
                     ref={ref =>{this.camera = ref}}
 
                   style={{flex:1, justifyContent:'flex-end',alignItems:'center'}}
-                  type={RNCamera.Constants.Type.front}                
+                  type={RNCamera.Constants.Type.back}                
                 />
                 <View style={{flex:0,flexDirection:'row', justifyContent:'center'}}>
                     <TouchableOpacity
