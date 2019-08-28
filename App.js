@@ -79,7 +79,7 @@ class HomeScreen extends React.Component {
         //if got data, 
 
         const dataWeUpdate = doc.data().population +1 ;
-
+        
         
 
         transaction.update(reffirebase,{
@@ -101,7 +101,7 @@ class HomeScreen extends React.Component {
       console.log('population new '+ dataWeUpdate);
 
     }).catch(error =>{
-
+s
       console.log('error catch while transaction =>> '+ error);
 
     });
@@ -182,7 +182,11 @@ class HomeScreen extends React.Component {
     <View style={{margin:10, width:200}}>
       <Button title='get from firebase' onPress={this._donwloadThem}></Button>
     </View>
-    <Text style={{margin:10}}>test</Text>
+    
+    
+    <Text style={{margin:10}}>testsss</Text>
+
+
     <Text>{this.state.cityInput}</Text>
     <View style={{margin:10, width:200}}>
     <Button title='get from firebase' onPress={this._downloadColv2}></Button>

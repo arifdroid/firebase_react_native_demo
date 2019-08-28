@@ -1,0 +1,414 @@
+[
+    [
+        {
+            "elementText": "imple",
+            "lineText": "imple",
+            "resultText": "imple\nKIND\nSOoi\ning\nAL",
+            "blockText": "imple",
+            "blockCoordinates": {
+                "height": 227,
+                "width": 728,
+                "left": 1441,
+                "top": 1537
+            }
+        },
+        {
+            "elementText": "SOoi",
+            "lineText": "SOoi",
+            "resultText": "imple\nKIND\nSOoi\ning\nAL",
+            "blockText": "KIND\nSOoi",
+            "blockCoordinates": {
+                "height": 241,
+                "width": 544,
+                "left": 1392,
+                "top": 2069
+            }
+        },
+        {
+            "elementText": "ing",
+            "lineText": "ing",
+            "resultText": "imple\nKIND\nSOoi\ning\nAL",
+            "blockText": "ing",
+            "blockCoordinates": {
+                "height": 171,
+                "width": 248,
+                "left": 1859,
+                "top": 2146
+            }
+        },
+        {
+            "elementText": "AL",
+            "lineText": "AL",
+            "resultText": "imple\nKIND\nSOoi\ning\nAL",
+            "blockText": "AL",
+            "blockCoordinates": {
+                "height": 77,
+                "width": 155,
+                "left": 1563,
+                "top": 2298
+            }
+        }
+    ],
+    [
+        {
+            "elementText": "NEWI",
+            "lineText": "NEWI",
+            "resultText": "NEWI\nsimple\nSENSITIVE SKIN EXPERTS\nmoisturizing\nFACIA WAS\nKIND 1O SKIN",
+            "blockText": "NEWI",
+            "blockCoordinates": {
+                "height": 89,
+                "width": 384,
+                "left": 937,
+                "top": 861
+            }
+        },
+        {
+            "elementText": "simple",
+            "lineText": "simple",
+            "resultText": "NEWI\nsimple\nSENSITIVE SKIN EXPERTS\nmoisturizing\nFACIA WAS\nKIND 1O SKIN",
+            "blockText": "simple",
+            "blockCoordinates": {
+                "height": 265,
+                "width": 960,
+                "left": 1167,
+                "top": 1003
+            }
+        },
+        {
+            "elementText": "EXPERTS",
+            "lineText": "SENSITIVE SKIN EXPERTS",
+            "resultText": "NEWI\nsimple\nSENSITIVE SKIN EXPERTS\nmoisturizing\nFACIA WAS\nKIND 1O SKIN",
+            "blockText": "SENSITIVE SKIN EXPERTS",
+            "blockCoordinates": {
+                "height": 98,
+                "width": 1006,
+                "left": 1120,
+                "top": 1419
+            }
+        },
+        {
+            "elementText": "WAS",
+            "lineText": "FACIA WAS",
+            "resultText": "NEWI\nsimple\nSENSITIVE SKIN EXPERTS\nmoisturizing\nFACIA WAS\nKIND 1O SKIN",
+            "blockText": "moisturizing\nFACIA WAS",
+            "blockCoordinates": {
+                "height": 279,
+                "width": 939,
+                "left": 1083,
+                "top": 1735
+            }
+        },
+        {
+            "elementText": "SKIN",
+            "lineText": "KIND 1O SKIN",
+            "resultText": "NEWI\nsimple\nSENSITIVE SKIN EXPERTS\nmoisturizing\nFACIA WAS\nKIND 1O SKIN",
+            "blockText": "KIND 1O SKIN",
+            "blockCoordinates": {
+                "height": 86,
+                "width": 618,
+                "left": 1308,
+                "top": 2211
+            }
+        }
+    ],
+    [
+        {
+            "elementText": "20,}}",
+            "lineText": "margin: 20,}}",
+            "resultText": "<Touchable0pacity\nstyle={{flex:6, backgroundColl\npadding: 15,\npaddingHorizontal: 20,\nalignSelf: center,\nmargin: 20,}}\nonPress-fthiS. takeThemPicc}\nText style-tfontsize:14\n</TOuchableopacity\nButton titleprocess data\nK/Niew",
+            "blockText": "<Touchable0pacity\nstyle={{flex:6, backgroundColl\npadding: 15,\npaddingHorizontal: 20,\nalignSelf: center,\nmargin: 20,}}",
+            "blockCoordinates": {
+                "height": 1234,
+                "width": 2447,
+                "left": 515,
+                "top": 520
+            }
+        },
+        {
+            "elementText": "takeThemPicc}",
+            "lineText": "onPress-fthiS. takeThemPicc}",
+            "resultText": "<Touchable0pacity\nstyle={{flex:6, backgroundColl\npadding: 15,\npaddingHorizontal: 20,\nalignSelf: center,\nmargin: 20,}}\nonPress-fthiS. takeThemPicc}\nText style-tfontsize:14\n</TOuchableopacity\nButton titleprocess data\nK/Niew",
+            "blockText": "onPress-fthiS. takeThemPicc}",
+            "blockCoordinates": {
+                "height": 130,
+                "width": 2241,
+                "left": 553,
+                "top": 2003
+            }
+        },
+        {
+            "elementText": "style-tfontsize:14",
+            "lineText": "Text style-tfontsize:14",
+            "resultText": "<Touchable0pacity\nstyle={{flex:6, backgroundColl\npadding: 15,\npaddingHorizontal: 20,\nalignSelf: center,\nmargin: 20,}}\nonPress-fthiS. takeThemPicc}\nText style-tfontsize:14\n</TOuchableopacity\nButton titleprocess data\nK/Niew",
+            "blockText": "Text style-tfontsize:14",
+            "blockCoordinates": {
+                "height": 145,
+                "width": 2017,
+                "left": 904,
+                "top": 2760
+            }
+        },
+        {
+            "elementText": "</TOuchableopacity",
+            "lineText": "</TOuchableopacity",
+            "resultText": "<Touchable0pacity\nstyle={{flex:6, backgroundColl\npadding: 15,\npaddingHorizontal: 20,\nalignSelf: center,\nmargin: 20,}}\nonPress-fthiS. takeThemPicc}\nText style-tfontsize:14\n</TOuchableopacity\nButton titleprocess data\nK/Niew",
+            "blockText": "</TOuchableopacity",
+            "blockCoordinates": {
+                "height": 155,
+                "width": 1463,
+                "left": 583,
+                "top": 2956
+            }
+        },
+        {
+            "elementText": "data",
+            "lineText": "Button titleprocess data",
+            "resultText": "<Touchable0pacity\nstyle={{flex:6, backgroundColl\npadding: 15,\npaddingHorizontal: 20,\nalignSelf: center,\nmargin: 20,}}\nonPress-fthiS. takeThemPicc}\nText style-tfontsize:14\n</TOuchableopacity\nButton titleprocess data\nK/Niew",
+            "blockText": "Button titleprocess data",
+            "blockCoordinates": {
+                "height": 155,
+                "width": 2086,
+                "left": 610,
+                "top": 3314
+            }
+        },
+        {
+            "elementText": "K/Niew",
+            "lineText": "K/Niew",
+            "resultText": "<Touchable0pacity\nstyle={{flex:6, backgroundColl\npadding: 15,\npaddingHorizontal: 20,\nalignSelf: center,\nmargin: 20,}}\nonPress-fthiS. takeThemPicc}\nText style-tfontsize:14\n</TOuchableopacity\nButton titleprocess data\nK/Niew",
+            "blockText": "K/Niew",
+            "blockCoordinates": {
+                "height": 126,
+                "width": 480,
+                "left": 312,
+                "top": 3670
+            }
+        }
+    ],
+    [
+        {
+            "elementText": "NEWI",
+            "lineText": "NEWI",
+            "resultText": "NEWI\nSimple\nSENSITIVE SKIN EXPERTS\ning\nACTAEWASH\nOis\nKIND TO",
+            "blockText": "NEWI",
+            "blockCoordinates": {
+                "height": 145,
+                "width": 448,
+                "left": 678,
+                "top": 373
+            }
+        },
+        {
+            "elementText": "Simple",
+            "lineText": "Simple",
+            "resultText": "NEWI\nSimple\nSENSITIVE SKIN EXPERTS\ning\nACTAEWASH\nOis\nKIND TO",
+            "blockText": "Simple",
+            "blockCoordinates": {
+                "height": 373,
+                "width": 1700,
+                "left": 813,
+                "top": 556
+            }
+        },
+        {
+            "elementText": "EXPERTS",
+            "lineText": "SENSITIVE SKIN EXPERTS",
+            "resultText": "NEWI\nSimple\nSENSITIVE SKIN EXPERTS\ning\nACTAEWASH\nOis\nKIND TO",
+            "blockText": "SENSITIVE SKIN EXPERTS",
+            "blockCoordinates": {
+                "height": 132,
+                "width": 1402,
+                "left": 884,
+                "top": 1186
+            }
+        },
+        {
+            "elementText": "ACTAEWASH",
+            "lineText": "ACTAEWASH",
+            "resultText": "NEWI\nSimple\nSENSITIVE SKIN EXPERTS\ning\nACTAEWASH\nOis\nKIND TO",
+            "blockText": "ing\nACTAEWASH",
+            "blockCoordinates": {
+                "height": 505,
+                "width": 1347,
+                "left": 944,
+                "top": 1583
+            }
+        },
+        {
+            "elementText": "Ois",
+            "lineText": "Ois",
+            "resultText": "NEWI\nSimple\nSENSITIVE SKIN EXPERTS\ning\nACTAEWASH\nOis\nKIND TO",
+            "blockText": "Ois",
+            "blockCoordinates": {
+                "height": 251,
+                "width": 322,
+                "left": 1167,
+                "top": 1590
+            }
+        },
+        {
+            "elementText": "TO",
+            "lineText": "KIND TO",
+            "resultText": "NEWI\nSimple\nSENSITIVE SKIN EXPERTS\ning\nACTAEWASH\nOis\nKIND TO",
+            "blockText": "KIND TO",
+            "blockCoordinates": {
+                "height": 112,
+                "width": 501,
+                "left": 1172,
+                "top": 2257
+            }
+        }
+    ],
+    [
+        {
+            "elementText": "plenishing",
+            "lineText": "plenishing",
+            "resultText": "Simple\nVE SKIN EXPIRTS\nplenishing\nIND To SKIN\n12\nox s6 m",
+            "blockText": "Simple\nVE SKIN EXPIRTS\nplenishing",
+            "blockCoordinates": {
+                "height": 860,
+                "width": 964,
+                "left": 1008,
+                "top": 1855
+            }
+        },
+        {
+            "elementText": "SKIN",
+            "lineText": "IND To SKIN",
+            "resultText": "Simple\nVE SKIN EXPIRTS\nplenishing\nIND To SKIN\n12\nox s6 m",
+            "blockText": "IND To SKIN",
+            "blockCoordinates": {
+                "height": 108,
+                "width": 690,
+                "left": 1117,
+                "top": 2949
+            }
+        },
+        {
+            "elementText": "12",
+            "lineText": "12",
+            "resultText": "Simple\nVE SKIN EXPIRTS\nplenishing\nIND To SKIN\n12\nox s6 m",
+            "blockText": "12",
+            "blockCoordinates": {
+                "height": 88,
+                "width": 147,
+                "left": 1586,
+                "top": 3520
+            }
+        },
+        {
+            "elementText": "m",
+            "lineText": "ox s6 m",
+            "resultText": "Simple\nVE SKIN EXPIRTS\nplenishing\nIND To SKIN\n12\nox s6 m",
+            "blockText": "ox s6 m",
+            "blockCoordinates": {
+                "height": 79,
+                "width": 385,
+                "left": 1286,
+                "top": 3725
+            }
+        }
+    ],
+    [
+        {
+            "elementText": "Cleanser",
+            "lineText": "Cleanser",
+            "resultText": "Salieylic\nAcid\nDaily\nGentle\nCleanser\ncOSRX\nFormulated with botanical\ningredients and 0.50%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.\n150 ml/5.07 FL.0Z",
+            "blockText": "Salieylic\nAcid\nDaily\nGentle\nCleanser",
+            "blockCoordinates": {
+                "height": 789,
+                "width": 606,
+                "left": 1007,
+                "top": 1335
+            }
+        },
+        {
+            "elementText": "cOSRX",
+            "lineText": "cOSRX",
+            "resultText": "Salieylic\nAcid\nDaily\nGentle\nCleanser\ncOSRX\nFormulated with botanical\ningredients and 0.50%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.\n150 ml/5.07 FL.0Z",
+            "blockText": "cOSRX",
+            "blockCoordinates": {
+                "height": 105,
+                "width": 429,
+                "left": 1054,
+                "top": 2257
+            }
+        },
+        {
+            "elementText": "sebum.",
+            "lineText": "and excess sebum.",
+            "resultText": "Salieylic\nAcid\nDaily\nGentle\nCleanser\ncOSRX\nFormulated with botanical\ningredients and 0.50%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.\n150 ml/5.07 FL.0Z",
+            "blockText": "Formulated with botanical\ningredients and 0.50%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.",
+            "blockCoordinates": {
+                "height": 516,
+                "width": 985,
+                "left": 934,
+                "top": 2504
+            }
+        },
+        {
+            "elementText": "FL.0Z",
+            "lineText": "150 ml/5.07 FL.0Z",
+            "resultText": "Salieylic\nAcid\nDaily\nGentle\nCleanser\ncOSRX\nFormulated with botanical\ningredients and 0.50%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.\n150 ml/5.07 FL.0Z",
+            "blockText": "150 ml/5.07 FL.0Z",
+            "blockCoordinates": {
+                "height": 163,
+                "width": 794,
+                "left": 1050,
+                "top": 3130
+            }
+        }
+    ],
+    [
+        {
+            "elementText": "entle",
+            "lineText": "entle",
+            "resultText": "Salicylic\nAcid\nDaily\nentle",
+            "blockText": "Salicylic\nAcid\nDaily\nentle",
+            "blockCoordinates": {
+                "height": 396,
+                "width": 395,
+                "left": 1286,
+                "top": 1853
+            }
+        }
+    ],
+    [
+        {
+            "elementText": "Daily",
+            "lineText": "Daily",
+            "resultText": "SalicylicC\nAcid\nDaily\nFLOZ\n150",
+            "blockText": "SalicylicC\nAcid\nDaily",
+            "blockCoordinates": {
+                "height": 468,
+                "width": 674,
+                "left": 1137,
+                "top": 1229
+            }
+        },
+        {
+            "elementText": "FLOZ",
+            "lineText": "FLOZ",
+            "resultText": "SalicylicC\nAcid\nDaily\nFLOZ\n150",
+            "blockText": "FLOZ",
+            "blockCoordinates": {
+                "height": 132,
+                "width": 268,
+                "left": 1599,
+                "top": 2855
+            }
+        },
+        {
+            "elementText": "150",
+            "lineText": "150",
+            "resultText": "SalicylicC\nAcid\nDaily\nFLOZ\n150",
+            "blockText": "150",
+            "blockCoordinates": {
+                "height": 65,
+                "width": 125,
+                "left": 1141,
+                "top": 2894
+            }
+        }
+    ]
+]
