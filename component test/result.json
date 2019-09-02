@@ -410,5 +410,253 @@
                 "top": 2894
             }
         }
+    ],
+    [
+        {
+            "elementText": "E",
+            "lineText": "E",
+            "resultText": "E",
+            "blockText": "E",
+            "blockCoordinates": {
+                "height": 446,
+                "width": 348,
+                "left": 1068,
+                "top": 1468
+            }
+        }
+    ],
+    [
+        {
+            "elementText": "O",
+            "lineText": "O",
+            "resultText": "O\nE\nL",
+            "blockText": "O",
+            "blockCoordinates": {
+                "height": 186,
+                "width": 424,
+                "left": 2247,
+                "top": 768
+            }
+        },
+        {
+            "elementText": "E",
+            "lineText": "E",
+            "resultText": "O\nE\nL",
+            "blockText": "E",
+            "blockCoordinates": {
+                "height": 278,
+                "width": 179,
+                "left": 360,
+                "top": 1863
+            }
+        },
+        {
+            "elementText": "L",
+            "lineText": "L",
+            "resultText": "O\nE\nL",
+            "blockText": "L",
+            "blockCoordinates": {
+                "height": 65,
+                "width": 87,
+                "left": 1726,
+                "top": 1978
+            }
+        },
+        [
+            {
+                "elementText": "47",
+                "lineText": "47",
+                "blockText": "47\n",
+                "blockCoordinates": {
+                    "height": 295,
+                    "width": 230,
+                    "left": 3400,
+                    "top": 47
+                }
+            },
+            {
+                "elementText": "WEB",
+                "lineText": "SPIKY WEB",
+                "blockText": "SPIKY WEB\n",
+                "blockCoordinates": {
+                    "height": 798,
+                    "width": 148,
+                    "left": 2428,
+                    "top": 1268
+                }
+            },
+            {
+                "elementText": "FIBRE",
+                "lineText": "FIBRE",
+                "blockText": "FIBRE\n",
+                "blockCoordinates": {
+                    "height": 202,
+                    "width": 62,
+                    "left": 2591,
+                    "top": 1560
+                }
+            }
+        ],
+        [
+            {
+                "elementText": "DNTIISING",
+                "lineText": "DNTIISING",
+                "blockText": "DNTIISING\n",
+                "blockCoordinates": {
+                    "height": 953,
+                    "width": 179,
+                    "left": 1821,
+                    "top": 1101
+                }
+            },
+            {
+                "elementText": "WEB",
+                "lineText": "SPIKY WEB",
+                "blockText": "SPIKY WEB\n",
+                "blockCoordinates": {
+                    "height": 802,
+                    "width": 129,
+                    "left": 2474,
+                    "top": 1124
+                }
+            },
+            {
+                "elementText": "FIBRE",
+                "lineText": "FIBRE",
+                "blockText": "FIBRE\n",
+                "blockCoordinates": {
+                    "height": 195,
+                    "width": 54,
+                    "left": 2634,
+                    "top": 1424
+                }
+            }
+        ]
+    ],
+    [
+        {
+            "elementText": "DASHING",
+            "lineText": "DASHING",
+            "resultText": "DASHING\nELITE\nWEB\nFIBRE\nSPIKY",
+            "blockText": "DASHING",
+            "blockCoordinates": {
+                "height": 274,
+                "width": 1368,
+                "left": 649,
+                "top": 1985
+            }
+        },
+        {
+            "elementText": "ELITE",
+            "lineText": "ELITE",
+            "resultText": "DASHING\nELITE\nWEB\nFIBRE\nSPIKY",
+            "blockText": "ELITE",
+            "blockCoordinates": {
+                "height": 702,
+                "width": 1818,
+                "left": 419,
+                "top": 2115
+            }
+        },
+        {
+            "elementText": "FIBRE",
+            "lineText": "FIBRE",
+            "resultText": "DASHING\nELITE\nWEB\nFIBRE\nSPIKY",
+            "blockText": "WEB\nFIBRE",
+            "blockCoordinates": {
+                "height": 380,
+                "width": 735,
+                "left": 1242,
+                "top": 2917
+            }
+        },
+        {
+            "elementText": "SPIKY",
+            "lineText": "SPIKY",
+            "resultText": "DASHING\nELITE\nWEB\nFIBRE\nSPIKY",
+            "blockText": "SPIKY",
+            "blockCoordinates": {
+                "height": 178,
+                "width": 574,
+                "left": 812,
+                "top": 2938
+            }
+        }
+    ],
+
+    /// PROCESS THIS DATA 
+    [
+        {
+            "elementText": "Daily",
+            "lineText": "Daily",
+            "resultText": "Saljeylic\nAcid\nDaily\nGentle\nCleanser\noSRX\nFormulated with botanical\ningredients and 0.5%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.\n150 ml/5.07 FL.OZ",
+            "blockText": "Saljeylic\nAcid\nDaily",
+            "blockCoordinates": {
+                "height": 695,
+                "width": 864,
+                "left": 1077,
+                "top": 562
+            }
+        },
+        {
+            "elementText": "Gentle",
+            "lineText": "Gentle",
+            "resultText": "Saljeylic\nAcid\nDaily\nGentle\nCleanser\noSRX\nFormulated with botanical\ningredients and 0.5%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.\n150 ml/5.07 FL.OZ",
+            "blockText": "Gentle",
+            "blockCoordinates": {
+                "height": 184,
+                "width": 684,
+                "left": 1013,
+                "top": 1268
+            }
+        },
+        {
+            "elementText": "Cleanser",
+            "lineText": "Cleanser",
+            "resultText": "Saljeylic\nAcid\nDaily\nGentle\nCleanser\noSRX\nFormulated with botanical\ningredients and 0.5%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.\n150 ml/5.07 FL.OZ",
+            "blockText": "Cleanser",
+            "blockCoordinates": {
+                "height": 189,
+                "width": 701,
+                "left": 1155,
+                "top": 1480
+            }
+        },
+        {
+            "elementText": "oSRX",
+            "lineText": "oSRX",
+            "resultText": "Saljeylic\nAcid\nDaily\nGentle\nCleanser\noSRX\nFormulated with botanical\ningredients and 0.5%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.\n150 ml/5.07 FL.OZ",
+            "blockText": "oSRX",
+            "blockCoordinates": {
+                "height": 227,
+                "width": 790,
+                "left": 923,
+                "top": 1774
+            }
+        },
+        {
+            "elementText": "sebum.",
+            "lineText": "and excess sebum.",
+            "resultText": "Saljeylic\nAcid\nDaily\nGentle\nCleanser\noSRX\nFormulated with botanical\ningredients and 0.5%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.\n150 ml/5.07 FL.OZ",
+            "blockText": "Formulated with botanical\ningredients and 0.5%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.",
+            "blockCoordinates": {
+                "height": 625,
+                "width": 1319,
+                "left": 962,
+                "top": 2154
+            }
+        },
+        {
+            "elementText": "FL.OZ",
+            "lineText": "150 ml/5.07 FL.OZ",
+            "resultText": "Saljeylic\nAcid\nDaily\nGentle\nCleanser\noSRX\nFormulated with botanical\ningredients and 0.5%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.\n150 ml/5.07 FL.OZ",
+            "blockText": "150 ml/5.07 FL.OZ",
+            "blockCoordinates": {
+                "height": 185,
+                "width": 1140,
+                "left": 1044,
+                "top": 2955
+            }
+        }
     ]
 ]

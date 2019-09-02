@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, Button } from 'react-native';
+import { Text, View, TouchableOpacity, Button,NativeModules } from 'react-native';
 
 import { RNCamera } from 'react-native-camera';
 
@@ -8,6 +8,12 @@ import RNMLkit from 'react-native-firebase-mlkit';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 import { _fungsiTestHere } from './BrandDatabaseFunction';
+
+import { _fungsiLoopLineText } from './LoopLineText'
+
+import { tsThisType } from '@babel/types';
+
+
 
 //import console = require('console');
 
@@ -26,7 +32,7 @@ var array3firstletterMatch = [];
 var array3firstletterMatch_boolean = false;
 
 
-var brandNameFinal='';
+var brandNameFinal = '';
 
 
 
@@ -66,6 +72,7 @@ class CameraScreen extends React.Component {
 
     _takeThemPic2 = (threeLetterProcessing) => {
 
+
         switch (this._takeThemPic2.arguments.length) {
 
             case 1:
@@ -73,26 +80,46 @@ class CameraScreen extends React.Component {
 
                 //something is weird. 
 
+                console.log('\n\n\n 3 letter found ' + threeLetterProcessing);
+                //  'cosrx,cosr2,cose2sas,' => ['rx,','r2,', 'e2sas,'] ,, 
+                // ['rx,' , '' ]
+                //instead of using letter number, we can use find[,]
+
+                //found=false;
+
+                var elHere2 = threeLetterProcessing[0].toString; // [0] = rx, // [0] = r2,
+
+                //for(let elHere2 of threeLetterProcessing){ rx ,
+                //elHere2 = elHere2.toString;
+
+                var n = elHere2.search(',');
+
+                elHere2 = elHere2.splice(0, n - 1); //n should not be 1 or < 0
+
+                //console.log('AFTER SHIFT ' + this.state.first3lettermatch)
+                brandNameFinal = matched2.concat(elHere2);
+
+                //then remove this, [0], shift left?
+
+                this.state.first3lettermatch.shift();
+
+                found = true;
+
+                console.log('AFTER SHIFT ' + this.state.first3lettermatch)
+
+
+                //}
+
+
                 break;
 
             case 0: //letter processing
 
                 (async () => {
 
-
-                    // if(this.state.first3lettermatch.length>=1){ //but we dont have await ,, or we distict them while we push button. 
-
-
-
-
-                    //     array3firstletterMatch_boolean=false;
-                    // }
-
-
-                    //if(this.camer)
                     if (this.camera) {
 
-                        const options = { quality: 0.5, base64: true, skipProcessing: true, forceOrientation: true };
+                        const options = { quality: 0.8, base64: true, skipProcessing: true, forceOrientation: true };
 
                         const data = await this.camera.takePictureAsync(options);
 
@@ -102,7 +129,10 @@ class CameraScreen extends React.Component {
 
                         })
 
+
                         var deviceTextRecognition2 = await RNMLkit.deviceTextRecognition(data.uri);
+
+                        console.log('DATA PROCESSED >> ' + JSON.stringify(deviceTextRecognition2))
 
                         // console.log('text detected ==>> '+ deviceTextRecognition2);
                         // console.log('text convert ==>> '+ JSON.stringify(deviceTextRecognition2));
@@ -114,20 +144,24 @@ class CameraScreen extends React.Component {
                         // new code , processing >>>>>>>>>>>>>>>>>>>>
 
                         // first initial entered by user 
-                        var receivedLetter = this.state.letter; 
+                        var receivedLetter = this.state.letter;
 
-
+                        var i = 0;
                         for (let element of deviceTextRecognition2) {
+
+                            console.log(" i  >> : " + i++);
 
                             //if not found . 
                             var textBrand_try_2 = element.elementText.toLowerCase(); //the ordinary , corsx
 
+                            console.log('DATA >> ', JSON.stringify(deviceTextRecognition2   ))
+
                             var resultTextHere = element.resultText.toLowerCase();
-                            resultTextHere = resultTextHere.replace(/\n/g," ");
+                            resultTextHere = resultTextHere.replace(/\n/g, " ");
                             var splitthem = resultTextHere.split(" ");
-                            var fiveWords = splitthem.slice(0,4);
+                            var fiveWords = splitthem.slice(0, 4);
                             var kajianFinal = fiveWords.join(" ");
-                            console.log('result text >>> '+ kajianFinal );    
+                            console.log('result text >>> ' + kajianFinal);
                             console.log('textbrand2 >>> ' + textBrand_try_2);
 
                             var check_wordsCount = textBrand_try_2.split(" "); // ["the", "ordinary"]
@@ -198,6 +232,8 @@ class CameraScreen extends React.Component {
 
                                             //try again , 
 
+                                            textBrand_try_2 = textBrand_try_2.toString;
+
                                             var subofText = textBrand_try_2.slice(0, 3);
 
                                             console.log('MATCHED word 2 >> ' + subofText);
@@ -255,11 +291,14 @@ class CameraScreen extends React.Component {
                                                 }
 
                                                 if (array3firstletterMatch_boolean) {
-                                                    this.setState({
 
-                                                        first3lettermatch: array3firstletterMatch,
-                                                        //we need to check this. first, after push camera snap, instead of straight machine learning
-                                                    })
+                                                    this.state.first3lettermatch = array3firstletterMatch;
+
+                                                    // this.setState({
+
+                                                    //     first3lettermatch: array3firstletterMatch,
+                                                    //     //we need to check this. first, after push camera snap, instead of straight machine learning
+                                                    // })
                                                 }
 
                                             }//end else, check 2nd match, and update 3 letter array
@@ -301,7 +340,37 @@ class CameraScreen extends React.Component {
 
 
                             //PRODUCT LINE VARIATION, >> not BRAND
+                            // WE CHECK OTHER data type. lineText, basically same process.  
 
+                            if (element.lineText.toLowerCase !== element.elementText.toLowerCase) {
+
+                                //check the letter, not same as brand, skip 
+
+
+
+                                if (element.lineText.toLowerCase.charAt(0) !== receivedLetter) {
+
+                                    var lineTextArrayResult = _fungsiLoopLineText(element.lineText.toLowerCase, receivedLetter);
+
+                                    if (lineTextArrayResult[0] === true) { //means TRUE, found MATCH
+
+                                        found = true;
+                                        break;
+                                    } else {
+
+                                        if (lineTextArrayResult.length > 1) {
+
+                                            this.state.first3lettermatch = lineTextArrayResult[1];
+
+
+                                        }
+
+                                        //this is just false,
+
+                                    }
+                                }
+
+                            }
 
 
 
@@ -318,7 +387,10 @@ class CameraScreen extends React.Component {
 
 
 
-                        console.log(' WOT MATE ');
+                        console.log(' matched 3 letter array ' + this.state.first3lettermatch);
+
+                        console.log(' WOT MATE \n\n\n');
+
 
                         if (found === true) {
                             this.setState({
@@ -398,7 +470,7 @@ class CameraScreen extends React.Component {
                                 this._takeThemPic2(a);
 
                             } else {
-                                this._takeThemPic2()
+                                this._takeThemPic2();
 
                             }
                         }}

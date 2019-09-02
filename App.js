@@ -36,6 +36,12 @@ import firebase from 'react-native-firebase';
 import Test2Comp from './components/Test2';
 
 import CameraComponent from './components/CameraComponent';
+
+import TestCamera from './component test/TestCamera';
+
+import TestCamera2 from './component test/TestCamera2';
+
+
 //import console = require('console');
 
 const reffirebase = firebase.firestore().collection('cities').doc('London');
@@ -101,7 +107,7 @@ class HomeScreen extends React.Component {
       console.log('population new '+ dataWeUpdate);
 
     }).catch(error =>{
-s
+
       console.log('error catch while transaction =>> '+ error);
 
     });
@@ -196,6 +202,13 @@ s
     <Button title='Camera' onPress={()=>this.props.navigation.navigate('CameraComponent')}></Button>
     </View>
   
+    <View style={{margin:10, width:200}}>
+    <Button title='Camera Test' onPress={()=>this.props.navigation.navigate('TestCamera')}></Button>
+    </View>
+  
+    <View style={{margin:10, width:200}}>
+    <Button title='Camera Test2' onPress={()=>this.props.navigation.navigate('TestCamera2')}></Button>
+    </View>
     
    </View>
   );
@@ -211,11 +224,32 @@ const RootStack = createStackNavigator(
     Home:HomeScreen,
     Test2Test:Test2Comp,
     CameraComponent:CameraComponent,
+    TestCamera2:TestCamera2,
+    
+    TestCamera:{
+
+      screen: TestCamera,
+      // headerMode:'none',
+      // navigationOptions:  {
+      //   headerLeft: null,
+      //   headerVisible: false,
+      // }
+      
+
+    },
 
   },{
 
-    initialRouteName:'Home'
-  }
+    initialRouteName:'Home',
+    headerBackTitleVisible:false,
+    headerMode:'none'
+
+    
+    
+  },
+
+  
+  
 );
 
 const AppContainer = createAppContainer(RootStack);
