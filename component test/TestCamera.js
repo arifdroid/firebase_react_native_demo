@@ -6,6 +6,14 @@ import { RNCamera } from 'react-native-camera';
 import RNMLkit from 'react-native-firebase-mlkit';
 //import console = require('console');
 
+import firebase from 'react-native-firebase';
+
+
+
+const reffirebase = firebase.firestore().collection('cities').doc('London');
+
+const db = firebase.firestore();
+
 
 export default class TestCamera extends Component {
     constructor() {
@@ -101,7 +109,7 @@ export default class TestCamera extends Component {
 
             //console.log('data '+ JSON.stringify(data))     
 
-            //var deviceTextRecognition3 = await RNMLkit.deviceTextRecognition(data.uri);
+            var deviceTextRecognition4 = await RNMLkit.deviceTextRecognition(data.uri);
 
             var deviceTextRecognition3= [
                 {
@@ -182,7 +190,7 @@ export default class TestCamera extends Component {
             ToastAndroid.show('finish process data ', ToastAndroid.SHORT);
 
 
-            console.log('data ' + JSON.stringify(deviceTextRecognition3))
+            //console.log('data ' + JSON.stringify(deviceTextRecognition3))
 
             //var textData = JSON.stringify(deviceTextRecognition2);
             
@@ -197,7 +205,8 @@ export default class TestCamera extends Component {
             var arrayResult = [];
 
             var i = 0;
-            for (let textData of deviceTextRecognition3) {
+            //for (let textData of deviceTextRecognition3) {
+            for (let textData of deviceTextRecognition4) {
 
                 var elementText3 = textData.elementText;
                 var lineText3 = textData.lineText;
@@ -264,6 +273,60 @@ export default class TestCamera extends Component {
 
 
     };
+
+    
+  _uploadThem=()=>{
+
+
+    firebase.firestore()
+    .runTransaction(async transaction => {
+
+
+        const doc = await transaction.get(reffirebase);
+
+
+        if(!doc.exists){
+
+          return;
+        }
+
+        //if got data, 
+
+        const dataWeUpdate = doc.data().population +1 ;
+        
+        
+
+        transaction.update(reffirebase,{
+
+          population:dataWeUpdate,
+
+        });
+
+        this.setState({
+
+            upthere:dataWeUpdate,
+        });
+
+        return dataWeUpdate;
+
+    }).then(dataWeUpdate=>{
+
+
+      console.log('population new '+ dataWeUpdate);
+
+    }).catch(error =>{
+
+      console.log('error catch while transaction =>> '+ error);
+
+    });
+
+
+
+
+
+  };
+
+  ////  
 
 
     render() {
