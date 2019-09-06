@@ -39,7 +39,8 @@ import CameraComponent from './components/CameraComponent';
 
 import TestCamera from './component test/TestCamera';
 
-import TestCamera2 from './component test/TestCamera2';
+import Final_TestCamera from './component test/Final_TestCamera';
+
 
 
 //import console = require('console');
@@ -205,11 +206,11 @@ class HomeScreen extends React.Component {
     <View style={{margin:10, width:200}}>
     <Button title='Camera Test' onPress={()=>this.props.navigation.navigate('TestCamera')}></Button>
     </View>
-  
+
     <View style={{margin:10, width:200}}>
-    <Button title='Camera Test2' onPress={()=>this.props.navigation.navigate('TestCamera2')}></Button>
+    <Button title='Final Test' onPress={()=>this.props.navigation.navigate('Final_TestCamera')}></Button>
     </View>
-    
+ 
    </View>
   );
   };
@@ -224,7 +225,7 @@ const RootStack = createStackNavigator(
     Home:HomeScreen,
     Test2Test:Test2Comp,
     CameraComponent:CameraComponent,
-    TestCamera2:TestCamera2,
+    Final_TestCamera:Final_TestCamera,
     
     TestCamera:{
 

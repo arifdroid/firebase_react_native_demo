@@ -3,6 +3,8 @@ import { Text, View, ToastAndroid, TouchableOpacity, Button } from 'react-native
 
 import { RNCamera } from 'react-native-camera';
 
+
+
 import RNMLkit from 'react-native-firebase-mlkit';
 //import console = require('console');
 
@@ -10,9 +12,13 @@ import firebase from 'react-native-firebase';
 
 /// .>>>> >>>> << HANDLE DATA 
 
-import {_fungsiTestHere} from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/components/BrandDatabaseFunction'
+import { _fungsiTestHere } from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/components/BrandDatabaseFunction'
 
+import {_getBrandAndProduct} from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/brandDatabase/database_C/Get_ProductName_C'
 
+import { _processResultTextFunction } from './Result_Text_Process';
+
+import {_prioritizeProductName, _sortAscending} from './Prioritize_Product'
 
 ///
 
@@ -21,7 +27,7 @@ const reffirebase = firebase.firestore().collection('cities').doc('London');
 const db = firebase.firestore();
 
 
-export default class TestCamera extends Component {
+export default class Final_TestCamera extends Component {
     constructor() {
         super()
 
@@ -32,7 +38,10 @@ export default class TestCamera extends Component {
             resultTextFinal: '',
             objectresult: [],
             objectSize: 0,
-            initialCharUserFinal:'t', //we assume initial input is 'c' character
+            initialCharUserFinal: 't', //we assume initial input is 'c' character
+
+            brandName:'default',
+            productName:'default',
         }
 
     }
@@ -106,7 +115,7 @@ export default class TestCamera extends Component {
 
     _snapProcess = async () => {
 
-        var initialChar_userInput= this.state.initialCharUserFinal; // 
+        var initialChar_userInput = this.state.initialCharUserFinal; // 
 
         if (this.camera) {
 
@@ -120,7 +129,7 @@ export default class TestCamera extends Component {
 
             var deviceTextRecognition4 = await RNMLkit.deviceTextRecognition(data.uri);
 
-            console.log('\n\nDATA >>',JSON.stringify(deviceTextRecognition4)+'\n\n')
+            //console.log('\n\nDATA >>',JSON.stringify(deviceTextRecognition4)+'\n\n')
 
             var deviceTextRecognition3 = [
                 {
@@ -198,15 +207,128 @@ export default class TestCamera extends Component {
             ];
 
 
-            ToastAndroid.show('finish process data ', ToastAndroid.SHORT);
+
+
+            ToastAndroid.show('processing data ', ToastAndroid.SHORT);
+
+            console.log(' >>>> 1');
 
             //>>>>>>>>>>>  <<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<< .... 
 
             // ..... >>>>>> PROCESS DATA HERE 
 
+            var arrayToProcess = _processResultTextFunction(deviceTextRecognition4);
+
+            console.log(' >>>> 2');
+
+            var productPriorityAll = [];
 
 
-            this._firstProcessData(deviceTextRecognition4, initialChar_userInput);
+            //var getproductPriority = new GetProductName_C;
+            //var getproductPriority = new GetProductName_T;
+
+            //var productPriority = getproductPriority._getBrandAndProduct(arrayToProcess);
+            var kkk = 0;
+            for (let el of arrayToProcess) {
+                kkk++;
+                var regexhere = new RegExp(el, 'gi')
+
+                //console.log('\n\n'+kkk +':kkk>>>>>>> HERE el :',el+' \n');
+
+               // var productPriority = getproductPriority._getBrandAndProduct(regexhere, '', kkk);
+
+               var productPriority = _getBrandAndProduct(regexhere)
+
+
+
+                //getBrandAndProduct(regexhere);
+                //need to dissect 
+
+                //sometimes return pure object, not just single object
+                //if(productPriority!=[]){
+
+                if (productPriority !== null) {
+
+                    if (productPriority.length > 1) {
+
+                        productPriority.forEach(elll => {
+
+                            productPriorityAll.push(elll);
+
+                        })
+
+                    } else {
+                        productPriorityAll.push(productPriority);
+                    }
+                }
+
+
+
+
+                //}    
+
+            }
+
+            console.log(' >>>> 3');
+            //productPriorityAll = productPriorityAll.shift();
+            //console.log('\n\n >>>>>>> HERE FINAL RESULT ARRAY : \n');
+
+            //console.log('\n\n\nPRODUCT PRIORITY ALL>>> ', JSON.stringify(productPriorityAll) + '\n\n\n')
+
+            //var priorityProduct = new PriorityLooper;
+
+            var arrayPriorityProduct = _prioritizeProductName(productPriorityAll);
+
+            console.log(' >>>> 4');
+
+            var FINAL_ALPHA = _sortAscending(arrayPriorityProduct);
+
+            console.log(' >>>> 5 FINAL ALPHA', JSON.stringify(FINAL_ALPHA));
+
+
+
+            var brandNameFinal = '';
+            var productNameFinal = '';
+
+            // for(var a=0; a<FINAL_ALPHA.left;a++){
+
+            //     if(a==0){
+
+            //          brandNameFinal = FINAL_ALPHA[a].brand;   
+            //         productNameFinal = FINAL_ALPHA[a].productname;
+
+            //         break;
+            //     }
+
+            // }
+
+            // console.log('>> 6 , brand:'+brandNameFinal, 'productname:'+productNameFinal)
+
+            FINAL_ALPHA.forEach((el,i)=>{
+
+
+                if(i==0){
+
+                    brandNameFinal = el.brand;
+                    productNameFinal = el.productName;
+                }
+
+            })
+
+            console.log('>> 6 , brand:'+brandNameFinal, 'productname:'+productNameFinal)
+
+            this.state.brandName = brandNameFinal;
+            this.state.productName = productNameFinal;
+
+            //console.log('\n\nFinal string list ', JSON.stringify(arrayPriorityProduct))
+
+
+            // var mergeBrandProduct = new PriorityLooper;
+
+            // var FINAL_BETA = mergeBrandProduct._combineBrandAndProductName(arrayPriorityProduct, resultted)
+
+
+           // console.log('\n\n FINAL BETA >>', JSON.stringify(FINAL_BETA))
 
 
 
@@ -214,173 +336,34 @@ export default class TestCamera extends Component {
 
             //>>>>>>>>>>>  <<<<<<<<<<<<<< >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> <<<<<<<<<<<<<<<
 
-            //console.log('data ' + JSON.stringify(deviceTextRecognition3))
-
-            //var textData = JSON.stringify(deviceTextRecognition2);
-
-            //var arrayWait = []
-
-            // "resultText": "Salieylic\nAcid\nDaily\nGentle\nCleanser\ncOSRX\nFormulated with botanical\ningredients and 0.50%\nSalicylic Acid, this cleanser\ngently whisk away impurities\nand excess sebum.\n150 ml/5.07 FL.0Z",
-            // "Salieylic\nAcid\nDaily\nGentle\nCleanser\ncOSRX\nFormulated with botanical\ningredients"
-            // "Salieylic Acid Daily GentleCleanser cOSRX Formulated with botanical ingredients"
-            // [{Salieylic} , {Acid} , {Daily}, {Gentle}, {Cleanser}, {cOSRX}, {Formulated}, {with}, {botanical} , {ingredients} ]
-            // 
-
-            var arrayResult = [];
-
-            var i = 0;
-            for (let textData of deviceTextRecognition4) {
-            //for (let textData of deviceTextRecognition4) {
-
-                var elementText3 = textData.elementText;
-                var lineText3 = textData.lineText;
-                var resultText3 = textData.resultText.replace(/\n/g, " ");
-                //resultText3 = resultText3.toString();
-                var splitthem = resultText3.split(" "); // array of data
-                if (splitthem.length >= 5) {
-                    var fiveWords = splitthem.slice(0, 5);
-                } else if (splitthem.length === 4) {
-                    var fiveWords = splitthem.slice(0, 4);
-                } else if (splitthem.length === 3) {
-                    var fiveWords = splitthem.slice(0, 3);
-                } else if (splitthem.length === 2) {
-                    var fiveWords = splitthem.slice(0, 2);
-                } else if (splitthem.length === 1) { // this is possibly not cut
-
-                    var fiveWords = splitthem.slice(0, 1);
-                }
-
-                resultText3 = fiveWords.join(" "); //
-
-                let ari = [{ "elementTextObj": elementText3 }, { "lineTextObj": lineText3 }, { "resultTextObj": resultText3 }];
-
-
-                //arrayWait = [{i:ari}]
-                console.log('elementObject ' + i + " >>> ", ari);
-                arrayResult.push(ari)
-
-                i++;
-                // arrayWait = 
-
-                // arrayResult.push(arr)
-
-            }
-
-            this.state.objectresult = arrayResult;
-
-            console.log("arrayResult >> ", arrayResult);
-
-            //arrayResult[0].values
-
-            // console.log("arrayResult single test >> ", arrayResult[0].);
-
-            // console.log("arrayResult single test >> ", arrayResult[0].elementTextObj);
-            // console.log("arrayResult single test >> ", arrayResult[1].elementTextObj);
-            // console.log("arrayResult single test >> ", arrayResult[2].elementTextObj);
-
 
 
             this.setState({
 
                 objectSize: this.state.objectresult.length,
+                brand:this.state.brandName,
+                productName:this.state.productName,
 
             })
 
 
             // console.log('array result >> ' + arrayResult);
 
-            ToastAndroid.show('length ', arrayResult.length);
+            ToastAndroid.show('FINISH PROCESS DATA ', arrayResult.length);
 
 
 
         }
 
 
-    };
-
-    ///// first process data  >> we try to get title first 
-
-    _firstProcessData = (dataParam, initialChar_userInput) => {    
-
-        // remember dataParam is JSON ==> [{} , {}, {} ]            
-        // roll data to find comparable with input, and drop data that not contain right first initial 
-
-        var initialCharArray = [];
-
-        dataParam.forEach(elHere =>{ //extract all element first, remember we have elementtext and linetext. 
-
-            if(elHere.elementText.toLowerCase().charAt(0)===initialChar_userInput){
-
-                initialCharArray.push(elHere.elementText.toLowerCase());
-            }
-
-        });
-
-
-        var initialChar = initialChar_userInput;
-
-
-
-    }
+    }; //end of snap process 
 
 
     /////
 
 
-    _uploadThem = () => {
 
-
-        firebase.firestore()
-            .runTransaction(async transaction => {
-
-
-                const doc = await transaction.get(reffirebase);
-
-
-                if (!doc.exists) {
-
-                    return;
-                }
-
-                //if got data, 
-
-                const dataWeUpdate = doc.data().population + 1;
-
-
-
-                transaction.update(reffirebase, {
-
-                    population: dataWeUpdate,
-
-                });
-
-                this.setState({
-
-                    upthere: dataWeUpdate,
-                });
-
-                return dataWeUpdate;
-
-            }).then(dataWeUpdate => {
-
-
-                console.log('population new ' + dataWeUpdate);
-
-            }).catch(error => {
-
-                console.log('error catch while transaction =>> ' + error);
-
-            });
-
-
-
-
-
-    };
-
-    ////  
-
-    _clearData=()=>{
+    _clearData = () => {
 
         this.setState({
 
@@ -416,10 +399,10 @@ export default class TestCamera extends Component {
                             <Button title='process'></Button>
                         </View>
                         <View style={{ marginHorizontal: 1, padding: 20 }}>
-                            <Button title='clear' onPress={()=>{this._clearData();}}></Button>
+                            <Button title='clear' onPress={() => { this._clearData(); }}></Button>
                         </View>
                         <View style={{ marginHorizontal: 1, padding: 20 }}>
-                            <Button title='shuffle'  onPress={() => { this._shuffleData();}}></Button>
+                            <Button title='shuffle' onPress={() => { this._shuffleData(); }}></Button>
                         </View>
 
                     </View>
@@ -463,13 +446,13 @@ export default class TestCamera extends Component {
 
 
                     />
-                    <View style={{ flexDirection:'row' , left:'180%'}}>
+                    <View style={{ flexDirection: 'row', left: '180%' }}>
                         <Button title='check' ></Button>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
-                        <View style={{ flex: 1, justifyContent:'center', alignItems:'center' }}>
-                            <Text style={{color:'white'}}>asdas</Text>
-                            <Text style={{color:'white', marginTop:10}}>asdas</Text>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ color: 'white' }}>{this.state.brandName}</Text>
+                            <Text style={{ color: 'white', marginTop: 10 }}>{this.state.productName}</Text>
 
                         </View>
 
@@ -492,7 +475,7 @@ export default class TestCamera extends Component {
 
 
 
-                            <Text style={{justifyContent:'center', alignItems:'center'}}>CAPTURE NOW</Text>
+                            <Text style={{ justifyContent: 'center', alignItems: 'center' }}>CAPTURE NOW</Text>
                         </TouchableOpacity>
 
                     </View>
