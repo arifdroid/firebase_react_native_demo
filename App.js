@@ -41,7 +41,7 @@ import TestCamera from './component test/TestCamera';
 
 import Final_TestCamera from './component test/Final_TestCamera';
 
-
+import Camera_Design from './component test/Camera_Design';
 
 //import console = require('console');
 
@@ -179,6 +179,8 @@ class HomeScreen extends React.Component {
 
   };
 
+  
+
   // ------------- end function
 
   render(){
@@ -210,12 +212,44 @@ class HomeScreen extends React.Component {
     <View style={{margin:10, width:200}}>
     <Button title='Final Test' onPress={()=>this.props.navigation.navigate('Final_TestCamera')}></Button>
     </View>
- 
+
+    <View style={{margin:10, width:200}}>
+    <Button title='Camera_Design' onPress={()=>this.props.navigation.navigate('Camera_Design')}></Button>
+    </View>
+
+
+    <View style={{flexDirection:'row', justifyContent:"flex-end",width:'100%'}}>
+      
+    <View style={{width:70, height:100, right:10}}>
+      
+      <FlatList
+            data = {datahere}        
+            renderItem={ ({item})=>{
+
+                  return(
+
+                    <Text style={{backgroundColor:'yellow', alignSelf:'center', padding:10}}
+                       
+                      //onPress={}
+                    
+                    >{item.key}</Text>
+
+                  )
+            }}
+        
+        />
+      </View>
+      
+    </View>
+
+
    </View>
   );
   };
 };
 
+var datahere = [{key:'a'},{key:'b'}, {key:'c'}, {key:'d'}, {key:'e'}, {key:'f'}, {key:'g'}, {key:'h'}, {key:'i'}, {key:'j'}, {key:'k'}, {key:'l'}, {key:'m'}, {key:'n'}, {key:'o'}, {key:'p'},
+                {key:'q'},{key:'r'},{key:'s'}, {key:'t'},  {key:'u'}, {key:'v'}, {key:'w'}, {key:'x'}, {key:'y'}, {key:'z'}];
 
 //////setting up navigation 
 
@@ -226,7 +260,7 @@ const RootStack = createStackNavigator(
     Test2Test:Test2Comp,
     CameraComponent:CameraComponent,
     Final_TestCamera:Final_TestCamera,
-    
+    Camera_Design:Camera_Design,
     TestCamera:{
 
       screen: TestCamera,
