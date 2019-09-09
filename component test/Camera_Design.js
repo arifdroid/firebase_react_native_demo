@@ -13,7 +13,13 @@ import RNMLkit from 'react-native-firebase-mlkit';
 
 import firebase from 'react-native-firebase';
 
+import { createAppContainer, createStackNavigator } from 'react-navigation';
+
+import View_Product from './View_Product';
+
 /// .>>>> >>>> << HANDLE DATA 
+
+//import {_fungsi_prosesData} from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/component test/Process_single_data.js';
 
 import { _fungsiTestHere } from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/components/BrandDatabaseFunction'
 
@@ -30,7 +36,7 @@ import { _prioritizeProductName, _sortAscending } from './Prioritize_Product'
 // const db = firebase.firestore();
 
 
-export default class Camera_Design extends Component {
+class Camera_Design extends Component {
     constructor() {
         super()
 
@@ -49,6 +55,9 @@ export default class Camera_Design extends Component {
             productName: 'default',
 
             fadeValue: new Animated.Value(0),
+
+            passtest:'PASSED THEM'
+
         }
 
     }
@@ -428,7 +437,7 @@ export default class Camera_Design extends Component {
 
                     ref={(ref) => { this.camera = ref }}
                     style={{ flex: 1, alignItems: 'flex-end' }}
-                    type={RNCamera.Constants.Type.front}
+                    type={RNCamera.Constants.Type.back}
                     //{/*onTextRecognized={}*/}
                     autoFocus={RNCamera.Constants.AutoFocus.on}
 
@@ -487,20 +496,30 @@ export default class Camera_Design extends Component {
 
                     <View style={{ flexDirection: 'column', marginLeft:20, flex:1, justifyContent:'center'}}>
 
-                        <Text style={{color:'white', alignSelf:'center', margin:4}}>hello</Text>
-                        <Text style={{color:'white', alignSelf:'center', margin:4}}>hello world hello world hello world hello world</Text>
+                        <Text style={{color:'white', alignSelf:'center', margin:4}}>{this.state.brandName}</Text>
+                        <Text style={{color:'white', alignSelf:'center', margin:4}}>{this.state.productName}</Text>
 
                     </View>
 
 
-                    <TouchableOpacity style={styles.capture}>
+                    <TouchableOpacity style={styles.capture}
+                    
+                    onPress={()=>{
+
+                        this._snapProcess();
+                    }}
+                    >
 
                         <Text>SNAP</Text>
 
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity style={styles.capture2}>
+                    <TouchableOpacity style={styles.capture2}
+                    
+                    onPress={()=>this.props.navigation.navigate('View_Product',{productname:this.state.productName, brandname:this.state.brandName})}
+                    
+                    >
 
                         <Text>SEND</Text>
 
@@ -552,6 +571,32 @@ const styles = StyleSheet.create({
     }
 
 
-
-
 })
+
+
+
+const RootStack = createStackNavigator(
+    {
+      Camera_Design: Camera_Design,
+      View_Product:View_Product,
+    },{
+  
+      initialRouteName:'Camera_Design',
+      headerBackTitleVisible:false,
+      headerMode:'none'
+  
+    },
+  
+  );
+
+  const AppContainer = createAppContainer(RootStack);
+  
+  export default class App extends React.Component{
+
+    render(){
+      return(
+          <AppContainer/>
+      )
+    };
+  };
+  
