@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-export const _getBrandAndProduct=(regexParameter, brandNameParam='',kkk)=>{  //this from product name, 
+export const _getBrandAndProduct_C=(regexParameter, brandNameParam='',kkk)=>{  //this from product name, 
 
     //        console.log('param is ' + regexParameter)
     

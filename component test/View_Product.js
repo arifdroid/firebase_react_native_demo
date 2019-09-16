@@ -129,7 +129,10 @@ export default class View_Product extends Component {
 
         var dataaa = el.pop();
         
+        if(i==0){
 
+            final_Object_2.push({ "ingredient":'Ingredient', "cir":'CIR Rate' ,"ewg":'EWG Rate' })
+        }
 
         final_Object_2.push(dataaa);
 
@@ -151,9 +154,6 @@ export default class View_Product extends Component {
         //dataFlatList:final_Object_2,
         dataMock_2:final_Object_2,
 
-
-
-
     })
 
     // final_object, wil contain, the array we need
@@ -166,14 +166,14 @@ export default class View_Product extends Component {
 
     render() {
         return (
-            <View style={{justifyContent:'center', flex:1}}>
-                <Text style={{alignSelf:'center'}}>{this.state.status}</Text>
+            <View style={{justifyContent:'center', flex:1,}}>
+                <Text style={{alignSelf:'center', margin:50}}>{this.state.status}</Text>
                 <Text style={{alignSelf:'center'}}>{this.state.passedBrandName}</Text>
                 <Text style={{alignSelf:'center'}}>{this.state.passedProductName}</Text>
                 <ScrollView style={{flex:1}}>
             
                 <FlatList
-                    style={{flex:1, height:100}}
+                    style={{flex:1, marginVertical:10}}
                     data={this.state.dataMock_2}
                     renderItem={({item})=>{
 

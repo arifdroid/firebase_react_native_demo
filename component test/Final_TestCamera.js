@@ -38,7 +38,7 @@ export default class Final_TestCamera extends Component {
             resultTextFinal: '',
             objectresult: [],
             objectSize: 0,
-            initialCharUserFinal: 't', //we assume initial input is 'c' character
+            initialCharUserFinal: '', //we assume initial input is 'c' character
 
             brandName:'default',
             productName:'default',
@@ -249,7 +249,7 @@ export default class Final_TestCamera extends Component {
 
                 if (productPriority !== null) {
 
-                    if (productPriority.length > 1) {
+                    if (productPriority.length>= 1) {
 
                         productPriority.forEach(elll => {
 

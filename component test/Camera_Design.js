@@ -23,7 +23,10 @@ import View_Product from './View_Product';
 
 import { _fungsiTestHere } from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/components/BrandDatabaseFunction'
 
-import { _getBrandAndProduct } from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/brandDatabase/database_C/Get_ProductName_C'
+import { _getBrandAndProduct_C } from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/brandDatabase/database_C/Get_ProductName_C'
+
+import { _getBrandAndProduct_T } from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/brandDatabase/database_T/Get_ProductName_T'
+
 
 import { _processResultTextFunction } from './Result_Text_Process';
 
@@ -49,7 +52,7 @@ class Camera_Design extends Component {
             objectSize: 0,
 
 
-            initialCharUserFinal: 'a', //we assume initial input is 'c' character
+            initialCharUserFinal: '', //we assume initial input is 'c' character
 
             brandName: 'default',
             productName: 'default',
@@ -132,6 +135,8 @@ class Camera_Design extends Component {
     _snapProcess = async () => {
 
         var initialChar_userInput = this.state.initialCharUserFinal; // 
+
+        console.log('letter initial >> ', initialChar_userInput)
 
         if (this.camera) {
 
@@ -249,15 +254,32 @@ class Camera_Design extends Component {
                 kkk++;
                 var regexhere = new RegExp(el, 'gi')
 
-                //console.log('\n\n'+kkk +':kkk>>>>>>> HERE el :',el+' \n');
+                //provide case, for each entry 
+                var productPriority;
+                switch(initialChar_userInput){
 
-                // var productPriority = getproductPriority._getBrandAndProduct(regexhere, '', kkk);
-
-                var productPriority = _getBrandAndProduct(regexhere)
+                    case 'A':
 
 
+                    break;
+                    case 'C':
+                        
+                            productPriority = _getBrandAndProduct_C(regexhere)
 
-                //getBrandAndProduct(regexhere);
+                            //console.log('\n HERE NIGGA ', productPriority.length+'\n')
+                    break;
+                    case 'T':
+
+                            productPriority = _getBrandAndProduct_T(regexhere)
+
+                    break;
+
+
+                }
+
+               
+                
+                
                 //need to dissect 
 
                 //sometimes return pure object, not just single object
@@ -265,7 +287,7 @@ class Camera_Design extends Component {
 
                 if (productPriority !== null) {
 
-                    if (productPriority.length > 1) {
+                    if (productPriority.length>= 1) {
 
                         productPriority.forEach(elll => {
 
@@ -496,7 +518,7 @@ class Camera_Design extends Component {
 
                     <View style={{ flexDirection: 'column', marginLeft:20, flex:1, justifyContent:'center'}}>
 
-                        <Text style={{color:'white', alignSelf:'center', margin:4}}>{this.state.brandName}</Text>
+                        <Text style={{color:'white', alignSelf:'center', margin:4}}>{this.state.initialCharUserFinal} : {this.state.brandName}</Text>
                         <Text style={{color:'white', alignSelf:'center', margin:4}}>{this.state.productName}</Text>
 
                     </View>

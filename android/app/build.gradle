@@ -200,6 +200,8 @@ dependencies {
     implementation "com.google.firebase:firebase-core:16.0.9"
     implementation 'com.google.firebase:firebase-ml-vision:17.0.0'
 
+    implementation 'com.google.firebase:firebase-functions:19.0.1'
+
 
     implementation "com.google.firebase:firebase-firestore:19.0.0"
 

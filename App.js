@@ -20,6 +20,7 @@ import {
   View,
   Text,
   StatusBar, Button,
+  TextInput,
 
 } from 'react-native';
 
@@ -43,6 +44,11 @@ import Final_TestCamera from './component test/Final_TestCamera';
 
 import Camera_Design from './component test/Camera_Design';
 
+
+//const httpsCallable = firebase.functions().httpsCallable('testCloudFunction');
+
+const httpsCallable = firebase.functions().httpsCallable('myFooBarFn');
+
 //import console = require('console');
 
 const reffirebase = firebase.firestore().collection('cities').doc('London');
@@ -61,6 +67,8 @@ class HomeScreen extends React.Component {
       cityInput:'zero',
       cityArray:[],
       upthere:'default',
+      text:'none',
+      urlReceived:'not yet',
 
     }
   
@@ -179,6 +187,148 @@ class HomeScreen extends React.Component {
 
   };
 
+  // server function 
+
+  _getURLFromServer = () =>{
+
+    console.log('checkk test')
+
+    this.setState({
+  
+      urlReceived:'working'
+    })
+  
+    //fetch('https://us-central1-febwhatsapp.cloudfunctions.net/helloWorld', )
+    fetch('https://us-central1-febtestwhatsapp.cloudfunctions.net/helloWorld_2', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      
+      'body': JSON.stringify({
+  
+          'data' :'hey bro'
+  
+      })
+    }  
+    ).then((datathis)=>datathis.json())
+    .then((datathis2)=>{
+
+      
+
+      try{
+
+        console.log('HERE 56 ', datathis2)
+
+        this.setState({
+
+          urlReceived: datathis2.data
+        })
+
+      }catch{
+
+
+      }
+
+      try{
+
+        console.log('HERE 55 ', JSON.stringify(datathis2))
+
+      }catch{
+
+
+      }
+
+      
+      
+
+    }).catch(e=>{
+  
+      
+      console.log('HERE 3')
+  
+      console.log(e.code);
+      console.log(e.message);
+      console.log(e.details.foo);
+  
+  
+  
+    })
+
+  };
+
+  /////////////// finalise url test 
+
+  
+  _testPuppeteer_2 = () =>{
+
+    
+    //fetch('https://us-central1-febwhatsapp.cloudfunctions.net/helloWorld', )
+    fetch('https://us-central1-febtestwhatsapp.cloudfunctions.net/testPuppeteer_2', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      
+      'body': JSON.stringify({
+  
+          'data' :'skincarisma cosrx salicylic acid daily gentle cleanser ingredient_list'
+  
+      })
+    }  
+    ).then((datathis)=>datathis.json())
+    .then((datathis2)=>{
+
+      try{
+
+        console.log('HERE 56 ', datathis2)
+
+        this.setState({
+
+
+          urlReceived: datathis2.data
+
+
+        })
+
+      }catch{
+
+
+      }
+
+      try{
+
+        console.log('HERE 55 ', JSON.stringify(datathis2))
+
+      }catch{
+
+
+      }
+
+      
+      
+
+    }).catch(e=>{
+  
+      
+      console.log('HERE 3')
+  
+      console.log(e.code);
+      console.log(e.message);
+      console.log(e.details.foo);
+  
+  
+  
+    })
+
+
+
+
+
+
+  } /////////// ..> end puppeteer_2 cloud function
   
 
   // ------------- end function
@@ -206,10 +356,6 @@ class HomeScreen extends React.Component {
     </View>
   
     <View style={{margin:10, width:200}}>
-    <Button title='Camera Test' onPress={()=>this.props.navigation.navigate('TestCamera')}></Button>
-    </View>
-
-    <View style={{margin:10, width:200}}>
     <Button title='Final Test' onPress={()=>this.props.navigation.navigate('Final_TestCamera')}></Button>
     </View>
 
@@ -217,29 +363,19 @@ class HomeScreen extends React.Component {
     <Button title='Camera_Design' onPress={()=>this.props.navigation.navigate('Camera_Design')}></Button>
     </View>
 
+    <View style={{width:'80%', marginHorizontal:20}}>
 
-    <View style={{flexDirection:'row', justifyContent:"flex-end",width:'100%'}}>
-      
-    <View style={{width:70, height:100, right:10}}>
-      
-      <FlatList
-            data = {datahere}        
-            renderItem={ ({item})=>{
+      <TextInput style={{backgroundColor:'#ddf7ff',}}
+      onChangeText={text => this.setState({ text:text})}
+      value={this.state.text}
+      />
 
-                  return(
+      <Text style={{margin:5}}>Url : {this.state.urlReceived}</Text>
 
-                    <Text style={{backgroundColor:'yellow', alignSelf:'center', padding:10}}
-                       
-                      //onPress={}
-                    
-                    >{item.key}</Text>
+    </View>
 
-                  )
-            }}
-        
-        />
-      </View>
-      
+    <View style={{margin:10, width:200}}>
+    <Button title='Cloud Function' onPress={()=>{this._testPuppeteer_2();}}></Button>
     </View>
 
 
