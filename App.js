@@ -274,7 +274,7 @@ class HomeScreen extends React.Component {
       
       'body': JSON.stringify({
   
-          'data' :'skincarisma cosrx salicylic acid daily gentle cleanser ingredient_list'
+          'data' :'skincarisma the ordinary resveratrol-3%-+-ferulic-acid-3% ingredient_list'
   
       })
     }  

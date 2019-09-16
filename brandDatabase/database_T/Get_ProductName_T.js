@@ -66,7 +66,7 @@ export const _getBrandAndProduct_T=(regexParameter, brandNameParam='',kkk)=>{  /
 
                         //finalArrayToCheck.push({ "brand": "the ordinarylol", "productname": spliteHere[i] })
 
-                        finalArrayToCheck.push({ "brand": "the ordinarylol", "productname": spliteHere[i] })
+                        finalArrayToCheck.push({ "brand": "the ordinary", "productname": spliteHere[i] })
 
                         //break;     
                     }else if(splitfound.length>1){

@@ -51,7 +51,7 @@ const openConnection = async () => {
 };
 
 exports.testPuppeteer_2 = functions
-    .runWith({ memory: '2GB', timeoutSeconds: 450 }).https
+    .runWith({ memory: '2GB', timeoutSeconds: 540 }).https
     .onRequest(async (request, response) => {
 
         let { browser_2, page_2 } = await openConnection();
@@ -71,16 +71,18 @@ exports.testPuppeteer_2 = functions
 
             var typedPassed =  request.body.data;
 
+            console.log(' brand dan nama produk ', typedPassed)
+
             var return_URL = ''
 
             console.log('data got, puppeteer_2 => jadi la pulak')
 
-            await page_2.goto('https://www.google.com', { waitUntil: 'load' });
+            await page_2.goto('https://www.google.com.my', { waitUntil: 'load', timeout: 0 });
 
 
             await page_2.focus('#tsf > div:nth-child(2) > div.A8SBwf > div.RNNXgb > div.SDkEP > div.a4bIc > input');
 
-            await page_2.keyboard.type(typedPassed, { delay: 10 });
+            await page_2.keyboard.type(typedPassed, { delay: 5 });
 
             await page_2.keyboard.press('Enter', { waitUntil: 'load', timeout: 0 });
 
@@ -91,16 +93,19 @@ exports.testPuppeteer_2 = functions
 
             textHere_2.forEach((ele) => {
 
+                //console.log('kenapa 1')
+
                 var stringasal = ele; //to use later 
                 var pattern = 'www.skincarisma.com';
                 var pattern_2 = new RegExp(pattern, 'gi');
                 var check = ele.match(pattern_2);
 
-                //console.log('\n count 1')
+                console.log('\n count 1')
 
                 if (check) {
 
-                    //console.log('\n count 2')
+                    
+                    console.log('\n count 2')
                     var pattern_new = 'ingredient_list';
                     var pattern_new_2 = new RegExp(pattern_new, 'gi');
 
@@ -110,14 +115,14 @@ exports.testPuppeteer_2 = functions
 
                         return_URL = ele;
 
-                        //console.log('\n count 3 ', return_URL)
+                        console.log('\n count 3 ', return_URL)
                     }
                 }
             });
 
             if (return_URL == '') {
 
-                //console.log('\n count 4 ', return_URL)
+                console.log('\n count 4 , ade ke url : ', return_URL)
 
                 const text_Here_3 = await page_2.evaluate(() => Array.from(document.querySelectorAll('div.bkWMgd > div.srg >  div:nth-child(2) > div > div > div.r > a'), element => element.getAttribute('href')));
 
@@ -135,13 +140,13 @@ exports.testPuppeteer_2 = functions
 
                         var checkFinal = stringasal.match(pattern_new_2);
 
-                        //console.log('\n count 6 ', checkFinal)
+                        console.log('\n count 6 ', checkFinal)
 
                         if (checkFinal) {
 
                             return_URL = ele2;
 
-                            //console.log('\n count 7 ', return_URL)
+                            console.log('\n count 7 ', return_URL)
                         }
 
                     }
