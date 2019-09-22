@@ -6,11 +6,11 @@
  * @flow
  */
 
- // https://github.com/mateusc42/react-native-firebase-mlkit wrapper ml kit 
+// https://github.com/mateusc42/react-native-firebase-mlkit wrapper ml kit 
 
 
 import { createAppContainer, createStackNavigator } from 'react-navigation';
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import {
 
   FlatList,
@@ -23,11 +23,12 @@ import {
   TextInput,
   ImageBackground,
   TouchableOpacity,
+  Image,
 
 
 } from 'react-native';
 
-import {Fonts} from './src/utils/Font';
+import { Fonts } from './src/utils/Font';
 
 import {
   Header,
@@ -35,8 +36,10 @@ import {
   Colors,
   DebugInstructions,
   ReloadInstructions,
-  
+
 } from 'react-native/Libraries/NewAppScreen';
+
+import LinearGradient from 'react-native-linear-gradient'
 
 import firebase from 'react-native-firebase';
 
@@ -64,68 +67,68 @@ const db = firebase.firestore();
 //const reffirebaseCollection = firebase.firestore.collection('cities');
 
 class HomeScreen extends React.Component {
-  constructor(){
+  constructor() {
     super();
-    
-    this.state={
 
-      population:0,
-      cityInput:'zero',
-      cityArray:[],
-      upthere:'default',
-      text:'none',
-      urlReceived:'not yet',
+    this.state = {
+
+      population: 0,
+      cityInput: 'zero',
+      cityArray: [],
+      upthere: 'default',
+      text: 'none',
+      urlReceived: 'not yet',
 
     }
-  
+
   }
 
   // ------------- start function
 
-  _donwloadThem=()=>{
+  _donwloadThem = () => {
 
 
     firebase.firestore()
-    .runTransaction(async transaction => {
+      .runTransaction(async transaction => {
 
 
         const doc = await transaction.get(reffirebase);
 
 
-        if(!doc.exists){
+        if (!doc.exists) {
 
           return;
         }
 
         //if got data, 
 
-        const dataWeUpdate = doc.data().population +1 ;
-        
-        
+        const dataWeUpdate = doc.data().population + 1;
 
-        transaction.update(reffirebase,{
 
-          population:dataWeUpdate,
+
+        transaction.update(reffirebase, {
+
+          population: dataWeUpdate,
 
         });
 
         this.setState({
 
-            upthere:dataWeUpdate,
+          upthere: dataWeUpdate,
         });
 
         return dataWeUpdate;
 
-    }).then(dataWeUpdate=>{
+      }).then(dataWeUpdate => {
 
 
-      console.log('population new '+ dataWeUpdate);
+        console.log('population new ' + dataWeUpdate);
 
-    }).catch(error =>{
+      }).catch(error => {
 
-      console.log('error catch while transaction =>> '+ error);
+        console.log('error catch while transaction =>> ' + error);
 
-    });
+      });
 
 
 
@@ -135,7 +138,7 @@ class HomeScreen extends React.Component {
 
   ////  
 
-  _donwloadCollection =()=>{
+  _donwloadCollection = () => {
 
     // db.collection('cities')
     // .get()
@@ -148,46 +151,46 @@ class HomeScreen extends React.Component {
     // })
 
     db.collection('cities')
-    .get().then( object =>{
+      .get().then(object => {
 
-        object.docs.forEach(docSingleObject=>{
+        object.docs.forEach(docSingleObject => {
 
-          
+
         });
 
 
-    }).catch(error=>{
+      }).catch(error => {
 
-      console.log('errrrrooor');
+        console.log('errrrrooor');
 
-      this.setState({
+        this.setState({
 
-        cityInput:'what nigg '+ error,
+          cityInput: 'what nigg ' + error,
+
+        });
+
+
 
       });
-
-
-
-    });
 
   };
 
   //another test download collection 
 
-  _downloadColv2 = async() =>{
+  _downloadColv2 = async () => {
 
-    const snapshot = await firebase.firestore().collection('cities').get().catch(error=>{
+    const snapshot = await firebase.firestore().collection('cities').get().catch(error => {
 
-      console.log('error got ==>.> '+ error);
+      console.log('error got ==>.> ' + error);
     });
 
-    var dataprocessed = snapshot.docs.map(doc=>doc.data());
+    var dataprocessed = snapshot.docs.map(doc => doc.data());
 
     console.log('data we received ==.> ' + JSON.stringify(dataprocessed));
 
     this.setState({
 
-      cityInput:dataprocessed,
+      cityInput: dataprocessed,
 
     })
 
@@ -195,15 +198,15 @@ class HomeScreen extends React.Component {
 
   // server function 
 
-  _getURLFromServer = () =>{
+  _getURLFromServer = () => {
 
     console.log('checkk test')
 
     this.setState({
-  
-      urlReceived:'working'
+
+      urlReceived: 'working'
     })
-  
+
     //fetch('https://us-central1-febwhatsapp.cloudfunctions.net/helloWorld', )
     fetch('https://us-central1-febtestwhatsapp.cloudfunctions.net/helloWorld_2', {
       method: 'POST',
@@ -211,65 +214,65 @@ class HomeScreen extends React.Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      
+
       'body': JSON.stringify({
-  
-          'data' :'hey bro'
-  
+
+        'data': 'hey bro'
+
       })
-    }  
-    ).then((datathis)=>datathis.json())
-    .then((datathis2)=>{
-
-      
-
-      try{
-
-        console.log('HERE 56 ', datathis2)
-
-        this.setState({
-
-          urlReceived: datathis2.data
-        })
-
-      }catch{
+    }
+    ).then((datathis) => datathis.json())
+      .then((datathis2) => {
 
 
-      }
 
-      try{
+        try {
 
-        console.log('HERE 55 ', JSON.stringify(datathis2))
+          console.log('HERE 56 ', datathis2)
 
-      }catch{
+          this.setState({
+
+            urlReceived: datathis2.data
+          })
+
+        } catch{
 
 
-      }
+        }
 
-      
-      
+        try {
 
-    }).catch(e=>{
-  
-      
-      console.log('HERE 3')
-  
-      console.log(e.code);
-      console.log(e.message);
-      console.log(e.details.foo);
-  
-  
-  
-    })
+          console.log('HERE 55 ', JSON.stringify(datathis2))
+
+        } catch{
+
+
+        }
+
+
+
+
+      }).catch(e => {
+
+
+        console.log('HERE 3')
+
+        console.log(e.code);
+        console.log(e.message);
+        console.log(e.details.foo);
+
+
+
+      })
 
   };
 
   /////////////// finalise url test 
 
-  
-  _testPuppeteer_2 = () =>{
 
-    
+  _testPuppeteer_2 = () => {
+
+
     //fetch('https://us-central1-febwhatsapp.cloudfunctions.net/helloWorld', )
     fetch('https://us-central1-febtestwhatsapp.cloudfunctions.net/testPuppeteer_2', {
       method: 'POST',
@@ -277,57 +280,57 @@ class HomeScreen extends React.Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      
+
       'body': JSON.stringify({
-  
-          'data' :'skincarisma the ordinary resveratrol-3%-+-ferulic-acid-3% ingredient_list'
-  
+
+        'data': 'skincarisma the ordinary resveratrol-3%-+-ferulic-acid-3% ingredient_list'
+
       })
-    }  
-    ).then((datathis)=>datathis.json())
-    .then((datathis2)=>{
+    }
+    ).then((datathis) => datathis.json())
+      .then((datathis2) => {
 
-      try{
+        try {
 
-        console.log('HERE 56 ', datathis2)
+          console.log('HERE 56 ', datathis2)
 
-        this.setState({
-
-
-          urlReceived: datathis2.data
+          this.setState({
 
 
-        })
-
-      }catch{
+            urlReceived: datathis2.data
 
 
-      }
+          })
 
-      try{
-
-        console.log('HERE 55 ', JSON.stringify(datathis2))
-
-      }catch{
+        } catch{
 
 
-      }
+        }
 
-      
-      
+        try {
 
-    }).catch(e=>{
-  
-      
-      console.log('HERE 3')
-  
-      console.log(e.code);
-      console.log(e.message);
-      console.log(e.details.foo);
-  
-  
-  
-    })
+          console.log('HERE 55 ', JSON.stringify(datathis2))
+
+        } catch{
+
+
+        }
+
+
+
+
+      }).catch(e => {
+
+
+        console.log('HERE 3')
+
+        console.log(e.code);
+        console.log(e.message);
+        console.log(e.details.foo);
+
+
+
+      })
 
 
 
@@ -335,32 +338,42 @@ class HomeScreen extends React.Component {
 
 
   } /////////// ..> end puppeteer_2 cloud function
-  
+
 
   // ------------- end function
 
-  render(){
-  return (
-   <View style={{alignItems:'center', justifyContent:'center', flex:1}}>
-   
-    <ImageBackground
-    source={require('./img/background_final.png')}
-    style={styles.containerImage}
-    
-    ></ImageBackground>
+  render() {
+    return (
+      <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
 
-    <Text style={{alignSelf:'center',fontFamily:Fonts.LobsterFont, position:'absolute', top:"10%", fontSize:50 , color:'#e88989' }}> Checker App </Text>
+        <ImageBackground
+          source={require('./img/background_final.png')}
+          style={styles.containerImage}
 
-    <View style={{margin:10, width:200 , position:'absolute', bottom:150}}>
-    <Button title='Check Your Skincare Product' onPress={()=>this.props.navigation.navigate('Camera_Design')}></Button>
-    </View>
-    <View style={{margin:10, width:200 , position:'absolute', bottom:50}}>
-    <TouchableOpacity  style={styles.capture_opacity} onPress={()=>this.props.navigation.navigate('Camera_Design')}>
-    <Text style={{color:'white'}}>CHECK YOUR SKINCARE</Text>
-    </TouchableOpacity>
-    </View>
+        ></ImageBackground>
 
-    {/*
+        <Text style={{ alignSelf: 'center', fontFamily: Fonts.LobsterFont, position: 'absolute', top: "6%", fontSize: 50, color: '#f2a0a0' }}> Checker App </Text>
+
+        <View style={{ margin: 10, width: "73%", position: 'absolute', bottom: 50 }}>
+          <TouchableOpacity
+
+            onPress={() => this.props.navigation.navigate('Camera_Design')}>
+            <LinearGradient
+              //locations={[0.3, 0,]}
+              style={styles.button_gradient}
+              colors={['#FC5073', '#F696AA', '#F0D5DB']} >
+
+              
+              <Text style={{ color: 'white', letterSpacing:1.7 ,flex:6}}>CHECK YOUR SKINCARE</Text>
+              <Image style={{resizeMode:'contain', flex:1}} source={require('./img/cam_final.png')}></Image> 
+            </LinearGradient>
+          </TouchableOpacity>
+
+
+
+        </View>
+
+        {/*
     <View style={{width:'80%', marginHorizontal:20}}>
 
       <TextInput style={{backgroundColor:'#ddf7ff',}}
@@ -378,8 +391,8 @@ class HomeScreen extends React.Component {
     */}
 
 
-   </View>
-  );
+      </View>
+    );
   };
 };
 
@@ -391,11 +404,11 @@ class HomeScreen extends React.Component {
 const RootStack = createStackNavigator(
   {
 
-     Home:HomeScreen,
+    Home: HomeScreen,
     // Test2Test:Test2Comp,
     // CameraComponent:CameraComponent,
     // Final_TestCamera:Final_TestCamera,
-    Camera_Design:Camera_Design,
+    Camera_Design: Camera_Design,
     // TestCamera:{
 
     //   screen: TestCamera,
@@ -404,31 +417,31 @@ const RootStack = createStackNavigator(
     //   //   headerLeft: null,
     //   //   headerVisible: false,
     //   // }
-      
+
 
     // },
 
-  },{
+  }, {
 
-    initialRouteName:'Home',
-    headerBackTitleVisible:false,
-    headerMode:'none'
+  initialRouteName: 'Home',
+  headerBackTitleVisible: false,
+  headerMode: 'none'
 
-    
-    
-  },
 
-  
-  
+
+},
+
+
+
 );
 
 const AppContainer = createAppContainer(RootStack);
 
-export default class App extends React.Component{
+export default class App extends React.Component {
 
-  render(){
-    return(
-        <AppContainer/>
+  render() {
+    return (
+      <AppContainer />
 
     )
   };
@@ -436,18 +449,18 @@ export default class App extends React.Component{
 
 //////////// ..... >>>>>  ////  stack 
 
-class Test extends React.Component{
-  constructor(){
+class Test extends React.Component {
+  constructor() {
     super()
   }
 
-  render(){
-    return(
+  render() {
+    return (
 
-      <View style={{justifyContent:'center', alignItems:'center'}}>
-      
-      <Text> this is test component </Text>
-      
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+
+        <Text> this is test component </Text>
+
       </View>
 
     )
@@ -460,24 +473,32 @@ class Test extends React.Component{
 /////////////////////
 
 const styles = StyleSheet.create({
+
+  button_gradient: {
+    flex: 1, flexDirection: 'row',
+    justifyContent: 'center', alignItems: 'center', width: null, height: 51, marginTop: 5, borderRadius: 8,
+    elevation: 2.3, shadowOffset: { width: -5, height: -5 }, shadowColor: '#FF2D58', shadowOpacity: 0.2,
+    
+  },
+
   capture_opacity: {
     alignSelf: 'flex-end',
-    backgroundColor: 'rgba(245, 198, 198, 0.6)',
+    //backgroundColor: 'rgba(245, 198, 198, 0.6)',
     borderRadius: 1,
     padding: 15,
-    paddingLeft:20,
-    paddingRight:20,
+    paddingLeft: 20,
+    paddingRight: 20,
     alignSelf: 'center',
-    position:'absolute',
-    bottom:20,
-    elevation:1,
-    
-},
-  containerImage:{
+    position: 'absolute',
+    bottom: 20,
+    elevation: 1,
 
-    flex:1,
-    width:'100%',
-    height:'100%',
+  },
+  containerImage: {
+
+    flex: 1,
+    width: '100%',
+    height: '100%',
 
   },
 
