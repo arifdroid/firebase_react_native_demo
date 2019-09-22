@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { Text, View, ToastAndroid, ScrollView, FlatList } from 'react-native'
+import { Text, View, ToastAndroid, ScrollView, FlatList, Modal,ImageBackground } from 'react-native'
 
 import cheerio from 'react-native-cheerio'
 
-import { _fungsi_prosesData } from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/component test/Process_single_data.js';
+import { _fungsi_prosesData } from 'firebase_demo/component test/Process_single_data.js';
+import { Fonts } from 'firebase_demo/src/utils/Font';
 
 export default class View_Product extends Component {
     constructor(props) {
@@ -14,8 +15,8 @@ export default class View_Product extends Component {
             passedProductName: props.navigation.state.params.productname,
             passedBrandName: props.navigation.state.params.brandname,
             dataFlatList: [],
-            //            dataMock_2:[{ ingredient:'water', cir:'A' ,ewg:1 } , { ingredient:'fuck', cir:'C', ewg:2 }],
-            dataMock_2: [{ "ingredient": 'water', "cir": 'A', "ewg": 1 }, { "ingredient": 'fuck', "cir": 'C', "ewg": 2 }],
+            //            dataMock_2:[{ ingredient:'water', cir:'A' ,ewg:1 } , { ingredient:'check', cir:'C', ewg:2 }],
+            dataMock_2: [{ "ingredient": 'water', "cir": 'A', "ewg": 1 }, { "ingredient": 'check', "cir": 'C', "ewg": 2 }],
 
 
         }
@@ -52,15 +53,15 @@ export default class View_Product extends Component {
 
         console.log('check response 2 == ', response) //here we can check 
 
-        var final_URL=''
+        var final_URL = ''
 
         if (response.status == 404) {
 
             console.log('this is fail, can proceed now, process url using puppeteer')
 
-            console.log('betul ke brand dan nama', brand_received , prodctname_received)
+            console.log('betul ke brand dan nama', brand_received, prodctname_received)
 
-           await fetch('https://us-central1-febtestwhatsapp.cloudfunctions.net/testPuppeteer_2', {
+            await fetch('https://us-central1-febtestwhatsapp.cloudfunctions.net/testPuppeteer_2', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -69,7 +70,7 @@ export default class View_Product extends Component {
 
                 'body': JSON.stringify({
 
-                    'data':'skincarisma'+' '+brand_received + ' ' + prodctname_received
+                    'data': 'skincarisma' + ' ' + brand_received + ' ' + prodctname_received
 
                 })
             }
@@ -80,7 +81,7 @@ export default class View_Product extends Component {
 
                         console.log('HERE 56 ', datathis2)
 
-                        final_URL= datathis2.data;    
+                        final_URL = datathis2.data;
 
                     } catch{
 
@@ -101,15 +102,15 @@ export default class View_Product extends Component {
 
                 })
 
-                if(final_URL!=''){
+            if (final_URL != '') {
 
-                    try{    
+                try {
                     response = await fetch(final_URL);
-                    }catch(e){
+                } catch (e) {
 
-                        console.log('after fetch error : ', e.toString() , final_URL)
-                    }
+                    console.log('after fetch error : ', e.toString(), final_URL)
                 }
+            }
 
 
 
@@ -195,7 +196,7 @@ export default class View_Product extends Component {
 
             if (i == 0) {
 
-                final_Object_2.push({ "ingredient": 'Ingredient', "cir": 'CIR Rate', "ewg": 'EWG Rate' })
+                final_Object_2.push({ "ingredient": 'Ingredient', "cir": ' CIR ', "ewg": ' EWG ' })
             }
 
             final_Object_2.push(dataaa);
@@ -230,35 +231,43 @@ export default class View_Product extends Component {
 
     render() {
         return (
-            <View style={{ justifyContent: 'center', flex: 1, }}>
-                <Text style={{ alignSelf: 'center', margin: 50 }}>{this.state.status}</Text>
-                <Text style={{ alignSelf: 'center' }}>{this.state.passedBrandName}</Text>
-                <Text style={{ alignSelf: 'center' }}>{this.state.passedProductName}</Text>
-                <ScrollView style={{ flex: 1 }}>
+            <ImageBackground 
+            source={require('firebase_demo/img/background_final.png')}
+            style={{flex: 1,width: '100%',height: '100%',}}>
 
-                    <FlatList
-                        style={{ flex: 1, marginVertical: 10 }}
-                        data={this.state.dataMock_2}
-                        renderItem={({ item }) => {
+                
+                    <Text style={{ alignSelf: 'center', fontFamily:Fonts.LobsterFont, fontSize: 20, color: '#F58181', margin:3, marginTop:50}}>{this.state.passedBrandName}</Text>
+                    <Text style={{ alignSelf: 'center', fontFamily:Fonts.LobsterFont, fontSize: 20, color: '#F58181', margin:3 }}>{this.state.passedProductName}</Text>
+                    <Text style={{ alignSelf: 'center',color:'rgba(52, 52, 52, 0.6)' , margin:20}}>{this.state.status}</Text>
+                    
+                    <ScrollView style={{ flex: 1 }}>
 
-                            return (
-                                <View style={{ flexDirection: 'row', backgroundColor: '#fefaec', margin: 3, padding: 5, marginHorizontal: 10 }}>
-                                    <Text style={{ flex: 1, alignSelf: 'center' }}>{item.ewg}</Text>
-                                    <Text style={{ flex: 1, alignSelf: 'center' }}>{item.cir}</Text>
-                                    <Text style={{ flex: 4, alignSelf: 'center' }}>{item.ingredient}</Text>
+                        <FlatList
+                            style={{ flex: 1, marginVertical: 10 }}
+                            data={this.state.dataMock_2}
+                            renderItem={({ item }) => {
 
-                                </View>
+                                return (
 
-                            )
+                                    <View style={{ flexDirection: 'row', backgroundColor: 'rgba(254, 250, 236, 0.6)', margin: 3, padding: 5, marginHorizontal: 10 }}>
+                                        <Text style={{ flex: 1, alignSelf: 'center',color:'rgba(52, 52, 52, 0.6)' }}>{item.ewg}</Text>
+                                        <Text style={{ flex: 1, alignSelf: 'center',color:'rgba(52, 52, 52, 0.6)' }}>{item.cir}</Text>
+                                        <Text style={{ flex: 4, alignSelf: 'center',color:'rgba(52, 52, 52, 0.6)' }}>{item.ingredient}</Text>
 
-                        }}
+                                    </View>
 
 
-                    />
+                                )
 
-                </ScrollView>
+                            }}
 
-            </View>
+
+                        />
+
+                    </ScrollView>
+          
+
+            </ImageBackground>
         )
     }
 }

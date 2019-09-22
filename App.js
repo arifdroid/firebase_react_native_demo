@@ -352,20 +352,20 @@ class HomeScreen extends React.Component {
 
         ></ImageBackground>
 
-        <Text style={{ alignSelf: 'center', fontFamily: Fonts.LobsterFont, position: 'absolute', top: "6%", fontSize: 50, color: '#f2a0a0' }}> Checker App </Text>
+        <Text style={{ alignSelf: 'center', fontFamily: Fonts.LobsterFont, position: 'absolute', top: "6%", fontSize: 50, color: '#F58181' }}> Checker App </Text>
 
-        <View style={{ margin: 10, width: "73%", position: 'absolute', bottom: 50 }}>
+        <View style={{ margin: 10, width: "76%", position: 'absolute', bottom: 50 }}>
           <TouchableOpacity
 
             onPress={() => this.props.navigation.navigate('Camera_Design')}>
             <LinearGradient
               //locations={[0.3, 0,]}
               style={styles.button_gradient}
-              colors={['#FC5073', '#F696AA', '#F0D5DB']} >
+              colors={['#FF3E66', '#F696AA', '#F0D5DB']} >
 
               
-              <Text style={{ color: 'white', letterSpacing:1.7 ,flex:6}}>CHECK YOUR SKINCARE</Text>
-              <Image style={{resizeMode:'contain', flex:1}} source={require('./img/cam_final.png')}></Image> 
+              <Text style={{ color: 'white', letterSpacing:1.7 ,flex:4, paddingLeft:15}}>CHECK YOUR SKINCARE</Text>
+              <Image style={{resizeMode:'contain', flex:1, paddingRight:15}} source={require('./img/cam_final.png')}></Image> 
             </LinearGradient>
           </TouchableOpacity>
 

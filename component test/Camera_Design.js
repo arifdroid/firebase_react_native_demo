@@ -21,11 +21,11 @@ import View_Product from './View_Product';
 
 //import {_fungsi_prosesData} from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/component test/Process_single_data.js';
 
-import { _fungsiTestHere } from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/components/BrandDatabaseFunction'
+import { _fungsiTestHere } from 'firebase_demo/components/BrandDatabaseFunction'
 
-import { _getBrandAndProduct_C } from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/brandDatabase/database_C/Get_ProductName_C'
+import { _getBrandAndProduct_C } from 'firebase_demo/brandDatabase/database_C/Get_ProductName_C'
 
-import { _getBrandAndProduct_T } from '/Users/60184/Documents/ReactNative/BASIC_RN_LATEST/firebase_demo/brandDatabase/database_T/Get_ProductName_T'
+import { _getBrandAndProduct_T } from 'firebase_demo/brandDatabase/database_T/Get_ProductName_T'
 
 
 import { _processResultTextFunction } from './Result_Text_Process';
