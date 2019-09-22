@@ -21,8 +21,13 @@ import {
   Text,
   StatusBar, Button,
   TextInput,
+  ImageBackground,
+  TouchableOpacity,
+
 
 } from 'react-native';
+
+import {Fonts} from './src/utils/Font';
 
 import {
   Header,
@@ -30,17 +35,18 @@ import {
   Colors,
   DebugInstructions,
   ReloadInstructions,
+  
 } from 'react-native/Libraries/NewAppScreen';
 
 import firebase from 'react-native-firebase';
 
-import Test2Comp from './components/Test2';
+//import Test2Comp from './components/Test2';
 
-import CameraComponent from './components/CameraComponent';
+//import CameraComponent from './components/CameraComponent';
 
-import TestCamera from './component test/TestCamera';
+//import TestCamera from './component test/TestCamera';
 
-import Final_TestCamera from './component test/Final_TestCamera';
+//import Final_TestCamera from './component test/Final_TestCamera';
 
 import Camera_Design from './component test/Camera_Design';
 
@@ -337,32 +343,24 @@ class HomeScreen extends React.Component {
   return (
    <View style={{alignItems:'center', justifyContent:'center', flex:1}}>
    
-    <Text>{this.state.upthere}</Text>
-    <View style={{margin:10, width:200}}>
-      <Button title='get from firebase' onPress={this._donwloadThem}></Button>
-    </View>
+    <ImageBackground
+    source={require('./img/background_final.png')}
+    style={styles.containerImage}
     
-    
-    <Text style={{margin:10}}>testsss</Text>
+    ></ImageBackground>
 
+    <Text style={{alignSelf:'center',fontFamily:Fonts.LobsterFont, position:'absolute', top:"10%", fontSize:50 , color:'#e88989' }}> Checker App </Text>
 
-    <Text>{this.state.cityInput}</Text>
-    <View style={{margin:10, width:200}}>
-    <Button title='get from firebase' onPress={this._downloadColv2}></Button>
+    <View style={{margin:10, width:200 , position:'absolute', bottom:150}}>
+    <Button title='Check Your Skincare Product' onPress={()=>this.props.navigation.navigate('Camera_Design')}></Button>
+    </View>
+    <View style={{margin:10, width:200 , position:'absolute', bottom:50}}>
+    <TouchableOpacity  style={styles.capture_opacity} onPress={()=>this.props.navigation.navigate('Camera_Design')}>
+    <Text style={{color:'white'}}>CHECK YOUR SKINCARE</Text>
+    </TouchableOpacity>
     </View>
 
-    <View style={{margin:10, width:200}}>
-    <Button title='Camera' onPress={()=>this.props.navigation.navigate('CameraComponent')}></Button>
-    </View>
-  
-    <View style={{margin:10, width:200}}>
-    <Button title='Final Test' onPress={()=>this.props.navigation.navigate('Final_TestCamera')}></Button>
-    </View>
-
-    <View style={{margin:10, width:200}}>
-    <Button title='Camera_Design' onPress={()=>this.props.navigation.navigate('Camera_Design')}></Button>
-    </View>
-
+    {/*
     <View style={{width:'80%', marginHorizontal:20}}>
 
       <TextInput style={{backgroundColor:'#ddf7ff',}}
@@ -377,6 +375,7 @@ class HomeScreen extends React.Component {
     <View style={{margin:10, width:200}}>
     <Button title='Cloud Function' onPress={()=>{this._testPuppeteer_2();}}></Button>
     </View>
+    */}
 
 
    </View>
@@ -384,30 +383,30 @@ class HomeScreen extends React.Component {
   };
 };
 
-var datahere = [{key:'a'},{key:'b'}, {key:'c'}, {key:'d'}, {key:'e'}, {key:'f'}, {key:'g'}, {key:'h'}, {key:'i'}, {key:'j'}, {key:'k'}, {key:'l'}, {key:'m'}, {key:'n'}, {key:'o'}, {key:'p'},
-                {key:'q'},{key:'r'},{key:'s'}, {key:'t'},  {key:'u'}, {key:'v'}, {key:'w'}, {key:'x'}, {key:'y'}, {key:'z'}];
+// var datahere = [{key:'a'},{key:'b'}, {key:'c'}, {key:'d'}, {key:'e'}, {key:'f'}, {key:'g'}, {key:'h'}, {key:'i'}, {key:'j'}, {key:'k'}, {key:'l'}, {key:'m'}, {key:'n'}, {key:'o'}, {key:'p'},
+//                 {key:'q'},{key:'r'},{key:'s'}, {key:'t'},  {key:'u'}, {key:'v'}, {key:'w'}, {key:'x'}, {key:'y'}, {key:'z'}];
 
 //////setting up navigation 
 
 const RootStack = createStackNavigator(
   {
 
-    Home:HomeScreen,
-    Test2Test:Test2Comp,
-    CameraComponent:CameraComponent,
-    Final_TestCamera:Final_TestCamera,
+     Home:HomeScreen,
+    // Test2Test:Test2Comp,
+    // CameraComponent:CameraComponent,
+    // Final_TestCamera:Final_TestCamera,
     Camera_Design:Camera_Design,
-    TestCamera:{
+    // TestCamera:{
 
-      screen: TestCamera,
-      // headerMode:'none',
-      // navigationOptions:  {
-      //   headerLeft: null,
-      //   headerVisible: false,
-      // }
+    //   screen: TestCamera,
+    //   // headerMode:'none',
+    //   // navigationOptions:  {
+    //   //   headerLeft: null,
+    //   //   headerVisible: false,
+    //   // }
       
 
-    },
+    // },
 
   },{
 
@@ -461,6 +460,27 @@ class Test extends React.Component{
 /////////////////////
 
 const styles = StyleSheet.create({
+  capture_opacity: {
+    alignSelf: 'flex-end',
+    backgroundColor: 'rgba(245, 198, 198, 0.6)',
+    borderRadius: 1,
+    padding: 15,
+    paddingLeft:20,
+    paddingRight:20,
+    alignSelf: 'center',
+    position:'absolute',
+    bottom:20,
+    elevation:1,
+    
+},
+  containerImage:{
+
+    flex:1,
+    width:'100%',
+    height:'100%',
+
+  },
+
   scrollView: {
     backgroundColor: Colors.lighter,
   },

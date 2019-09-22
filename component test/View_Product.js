@@ -263,6 +263,5 @@ export default class View_Product extends Component {
     }
 }
 
-const mockdata = [{ "ingredient": 'water', 'cir': 2 }, { "ingredient": 'fuck', 'cir': 99 }]
+const mockdata = [{ "ingredient": 'water', 'cir': 2 }, { "ingredient": 'ingredient here', 'cir': 99 }]
 
-//const mockdata = [ { "ingredient":'water', 'cir':2 } , { "ingredient":'fuck', 'cir':99 }]
